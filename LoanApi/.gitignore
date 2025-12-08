@@ -1,0 +1,16 @@
+# Configuration files to ignore
+appsettings.json
+appsettings.Development.json
+
+# .NET/Rider-ის სტანდარტული იგნორირებული ფაილები (რეკომენდებულია)
+# Binaries and temporary objects
+[Bb]in/
+[Oo]bj/
+
+# Rider/IDE files
+.idea/
+*.user
+*.suo
+
+# Test Results
+TestResults/

@@ -1,0 +1,12 @@
+2025-12-09 00:28:30.073 +04:00 [INF] User profile is available. Using '/home/gkutubidze/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-12-09 00:28:30.175 +04:00 [INF] Now listening on: http://localhost:5090
+2025-12-09 00:28:30.176 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-09 00:28:30.176 +04:00 [INF] Hosting environment: Development
+2025-12-09 00:28:30.176 +04:00 [INF] Content root path: /home/gkutubidze/LoanApi/LoanApi
+2025-12-09 00:28:30.263 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/index.html - null null
+2025-12-09 00:28:30.357 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/index.html - 200 null text/html;charset=utf-8 91.1823ms
+2025-12-09 00:28:30.374 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/index.js - null null
+2025-12-09 00:28:30.376 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/index.js - 200 null application/javascript;charset=utf-8 1.9014ms
+2025-12-09 00:28:31.731 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/v1/swagger.json - null null
+2025-12-09 00:28:31.830 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 98.5274ms
+2025-12-09 00:28:41.186 +04:00 [INF] Application is shutting down...

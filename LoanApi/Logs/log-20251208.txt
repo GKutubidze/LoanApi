@@ -1,0 +1,250 @@
+2025-12-08 17:05:23.199 +04:00 [INF] User profile is available. Using '/home/gkutubidze/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-12-08 17:05:23.380 +04:00 [INF] Now listening on: http://localhost:5090
+2025-12-08 17:05:23.382 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-08 17:05:23.382 +04:00 [INF] Hosting environment: Development
+2025-12-08 17:05:23.382 +04:00 [INF] Content root path: /home/gkutubidze/LoanApi/LoanApi
+2025-12-08 17:05:37.438 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/ - null null
+2025-12-08 17:05:37.545 +04:00 [WRN] Failed to determine the https port for redirect.
+2025-12-08 17:05:37.638 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/ - 404 0 null 204.6827ms
+2025-12-08 17:05:37.670 +04:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5090/, Response status code: 404
+2025-12-08 17:05:43.855 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger - null null
+2025-12-08 17:05:43.861 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger - 301 0 null 6.6971ms
+2025-12-08 17:05:43.869 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/index.html - null null
+2025-12-08 17:05:43.992 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/index.html - 200 null text/html;charset=utf-8 122.8153ms
+2025-12-08 17:05:44.188 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/swagger-ui.css - null null
+2025-12-08 17:05:44.188 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/index.css - null null
+2025-12-08 17:05:44.189 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/index.js - null null
+2025-12-08 17:05:44.189 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/swagger-ui-standalone-preset.js - null null
+2025-12-08 17:05:44.189 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/swagger-ui-bundle.js - null null
+2025-12-08 17:05:44.191 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/index.js - 200 null application/javascript;charset=utf-8 1.5815ms
+2025-12-08 17:05:44.201 +04:00 [INF] Sending file. Request path: '/index.css'. Physical path: 'N/A'
+2025-12-08 17:05:44.201 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/index.css - 200 202 text/css 12.6269ms
+2025-12-08 17:05:44.211 +04:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-12-08 17:05:44.211 +04:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-12-08 17:05:44.211 +04:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-12-08 17:05:44.214 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/swagger-ui-standalone-preset.js - 200 230007 text/javascript 24.79ms
+2025-12-08 17:05:44.214 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/swagger-ui-bundle.js - 200 1426050 text/javascript 24.615ms
+2025-12-08 17:05:44.214 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/swagger-ui.css - 200 152035 text/css 26.2438ms
+2025-12-08 17:05:46.595 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/v1/swagger.json - null null
+2025-12-08 17:05:46.596 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/favicon-32x32.png - null null
+2025-12-08 17:05:46.613 +04:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-12-08 17:05:46.613 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/favicon-32x32.png - 200 628 image/png 17.4711ms
+2025-12-08 17:05:46.769 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 173.6007ms
+2025-12-08 17:07:35.986 +04:00 [INF] Application is shutting down...
+2025-12-08 17:09:46.298 +04:00 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'Loan'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-12-08 17:09:46.359 +04:00 [WRN] No store type was specified for the decimal property 'MonthlyIncome' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-12-08 17:09:59.591 +04:00 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'Loan'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-12-08 17:09:59.651 +04:00 [WRN] No store type was specified for the decimal property 'MonthlyIncome' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-12-08 17:10:00.212 +04:00 [INF] Executed DbCommand (39ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-12-08 17:10:00.226 +04:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-12-08 17:10:00.258 +04:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-12-08 17:10:00.328 +04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-12-08 17:10:00.341 +04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-12-08 17:10:00.342 +04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-12-08 17:10:00.351 +04:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-12-08 17:10:00.366 +04:00 [INF] Applying migration '20251208130946_InitialMigration'.
+2025-12-08 17:10:00.387 +04:00 [ERR] Failed executing DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Users] (
+    [Id] int NOT NULL IDENTITY,
+    [FirstName] nvarchar(max) NOT NULL,
+    [LastName] nvarchar(max) NOT NULL,
+    [UserName] nvarchar(max) NOT NULL,
+    [Age] int NOT NULL,
+    [Email] nvarchar(max) NOT NULL,
+    [MonthlyIncome] decimal(18,2) NOT NULL,
+    [IsBlocked] bit NOT NULL,
+    [PasswordHash] nvarchar(max) NOT NULL,
+    [Role] int NOT NULL,
+    CONSTRAINT [PK_Users] PRIMARY KEY ([Id])
+);
+2025-12-08 17:10:58.712 +04:00 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'Loan'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-12-08 17:10:58.776 +04:00 [WRN] No store type was specified for the decimal property 'MonthlyIncome' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-12-08 17:11:07.360 +04:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-12-08 17:11:07.438 +04:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [LoanDb] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+END;
+2025-12-08 17:11:07.481 +04:00 [INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+DROP DATABASE [LoanDb];
+2025-12-08 17:11:14.725 +04:00 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'Loan'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-12-08 17:11:14.785 +04:00 [WRN] No store type was specified for the decimal property 'MonthlyIncome' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-12-08 17:11:15.470 +04:00 [INF] Executed DbCommand (192ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [LoanDb];
+2025-12-08 17:11:15.558 +04:00 [INF] Executed DbCommand (83ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [LoanDb] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2025-12-08 17:11:15.592 +04:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-12-08 17:11:15.597 +04:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-12-08 17:11:15.622 +04:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-12-08 17:11:15.702 +04:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-12-08 17:11:15.715 +04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-12-08 17:11:15.717 +04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-12-08 17:11:15.727 +04:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-12-08 17:11:15.750 +04:00 [INF] Applying migration '20251208130946_InitialMigration'.
+2025-12-08 17:11:15.781 +04:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Users] (
+    [Id] int NOT NULL IDENTITY,
+    [FirstName] nvarchar(max) NOT NULL,
+    [LastName] nvarchar(max) NOT NULL,
+    [UserName] nvarchar(max) NOT NULL,
+    [Age] int NOT NULL,
+    [Email] nvarchar(max) NOT NULL,
+    [MonthlyIncome] decimal(18,2) NOT NULL,
+    [IsBlocked] bit NOT NULL,
+    [PasswordHash] nvarchar(max) NOT NULL,
+    [Role] int NOT NULL,
+    CONSTRAINT [PK_Users] PRIMARY KEY ([Id])
+);
+2025-12-08 17:11:15.786 +04:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Loans] (
+    [Id] int NOT NULL IDENTITY,
+    [UserId] int NOT NULL,
+    [LoanType] int NOT NULL,
+    [Amount] decimal(18,2) NOT NULL,
+    [Currency] nvarchar(max) NOT NULL,
+    [LoanPeriod] int NOT NULL,
+    [Status] int NOT NULL,
+    CONSTRAINT [PK_Loans] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Loans_Users_UserId] FOREIGN KEY ([UserId]) REFERENCES [Users] ([Id]) ON DELETE CASCADE
+);
+2025-12-08 17:11:15.788 +04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Loans_UserId] ON [Loans] ([UserId]);
+2025-12-08 17:11:15.795 +04:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20251208130946_InitialMigration', N'9.0.0');
+2025-12-08 17:11:15.810 +04:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2025-12-08 22:12:07.782 +04:00 [INF] User profile is available. Using '/home/gkutubidze/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-12-08 22:12:07.888 +04:00 [INF] Now listening on: http://localhost:5090
+2025-12-08 22:12:07.889 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-08 22:12:07.889 +04:00 [INF] Hosting environment: Development
+2025-12-08 22:12:07.889 +04:00 [INF] Content root path: /home/gkutubidze/LoanApi/LoanApi
+2025-12-08 22:12:12.905 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/ - null null
+2025-12-08 22:12:12.937 +04:00 [WRN] Failed to determine the https port for redirect.
+2025-12-08 22:12:12.964 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/ - 404 0 null 60.8806ms
+2025-12-08 22:12:12.981 +04:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5090/, Response status code: 404
+2025-12-08 22:12:16.170 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/index.html - null null
+2025-12-08 22:12:16.230 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/index.html - 200 null text/html;charset=utf-8 60.6497ms
+2025-12-08 22:12:16.346 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/index.js - null null
+2025-12-08 22:12:16.349 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/index.js - 200 null application/javascript;charset=utf-8 2.9366ms
+2025-12-08 22:12:17.707 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/v1/swagger.json - null null
+2025-12-08 22:12:17.816 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 109.5701ms
+2025-12-08 22:12:28.388 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5090/api/User/login - application/json 59
+2025-12-08 22:12:28.390 +04:00 [INF] Executing endpoint 'LoanApi.Controllers.UserController.Login (LoanApi)'
+2025-12-08 22:12:28.407 +04:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoanApi.DTOs.UserLoginDto) on controller LoanApi.Controllers.UserController (LoanApi).
+2025-12-08 22:12:28.544 +04:00 [INF] Executing action method LoanApi.Controllers.UserController.Login (LoanApi) - Validation state: "Valid"
+2025-12-08 22:12:28.548 +04:00 [INF] Login attempt for user: string
+2025-12-08 22:12:28.999 +04:00 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'Loan'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-12-08 22:12:28.999 +04:00 [WRN] No store type was specified for the decimal property 'MonthlyIncome' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-12-08 22:12:29.620 +04:00 [INF] Executed DbCommand (58ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Age], [u].[Email], [u].[FirstName], [u].[IsBlocked], [u].[LastName], [u].[MonthlyIncome], [u].[PasswordHash], [u].[Role], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[UserName] = @__username_0
+2025-12-08 22:12:29.662 +04:00 [WRN] Login failed: User not found - string
+2025-12-08 22:12:29.663 +04:00 [ERR] Error during login for user: string
+System.Exception: არასწორი username ან პაროლი
+   at LoanApi.Services.UserService.LoginAsync(String username, String password) in /home/gkutubidze/LoanApi/LoanApi/Services/UserService.cs:line 65
+2025-12-08 22:12:29.684 +04:00 [INF] Executed action LoanApi.Controllers.UserController.Login (LoanApi) in 1273.8879ms
+2025-12-08 22:12:29.685 +04:00 [INF] Executed endpoint 'LoanApi.Controllers.UserController.Login (LoanApi)'
+2025-12-08 22:12:29.701 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5090/api/User/login - 400 null application/json 1313.0799ms
+2025-12-08 22:14:20.024 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/favicon-32x32.png - null null
+2025-12-08 22:14:20.051 +04:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-12-08 22:14:20.052 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/favicon-32x32.png - 200 628 image/png 28.0479ms
+2025-12-08 22:16:45.128 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5090/api/User/register - application/json 181
+2025-12-08 22:16:45.133 +04:00 [INF] Executing endpoint 'LoanApi.Controllers.UserController.Register (LoanApi)'
+2025-12-08 22:16:45.139 +04:00 [INF] Route matched with {action = "Register", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(LoanApi.DTOs.UserRegisterDto) on controller LoanApi.Controllers.UserController (LoanApi).
+2025-12-08 22:16:45.152 +04:00 [INF] Executing action method LoanApi.Controllers.UserController.Register (LoanApi) - Validation state: "Valid"
+2025-12-08 22:16:45.155 +04:00 [INF] Attempting to register user: string
+2025-12-08 22:16:45.177 +04:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_UserName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Age], [u].[Email], [u].[FirstName], [u].[IsBlocked], [u].[LastName], [u].[MonthlyIncome], [u].[PasswordHash], [u].[Role], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[UserName] = @__user_UserName_0
+2025-12-08 22:16:45.183 +04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__user_Email_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Age], [u].[Email], [u].[FirstName], [u].[IsBlocked], [u].[LastName], [u].[MonthlyIncome], [u].[PasswordHash], [u].[Role], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__user_Email_0
+2025-12-08 22:16:45.552 +04:00 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (DbType = Boolean), @p4='?' (Size = 4000), @p5='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p6='?' (Size = 4000), @p7='?' (DbType = Int32), @p8='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([Age], [Email], [FirstName], [IsBlocked], [LastName], [MonthlyIncome], [PasswordHash], [Role], [UserName])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2025-12-08 22:16:45.576 +04:00 [INF] User registered successfully: string, ID: 1
+2025-12-08 22:16:45.579 +04:00 [INF] Executed action method LoanApi.Controllers.UserController.Register (LoanApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 423.7364ms.
+2025-12-08 22:16:45.581 +04:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2025-12-08 22:16:45.582 +04:00 [INF] Executed action LoanApi.Controllers.UserController.Register (LoanApi) in 442.892ms
+2025-12-08 22:16:45.582 +04:00 [INF] Executed endpoint 'LoanApi.Controllers.UserController.Register (LoanApi)'
+2025-12-08 22:16:45.582 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5090/api/User/register - 200 null text/plain; charset=utf-8 454.0637ms
+2025-12-08 22:39:25.935 +04:00 [INF] Application is shutting down...
+2025-12-08 22:39:39.313 +04:00 [INF] User profile is available. Using '/home/gkutubidze/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-12-08 22:39:39.411 +04:00 [INF] Now listening on: http://localhost:5090
+2025-12-08 22:39:39.412 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-08 22:39:39.412 +04:00 [INF] Hosting environment: Development
+2025-12-08 22:39:39.413 +04:00 [INF] Content root path: /home/gkutubidze/LoanApi/LoanApi
+2025-12-08 22:39:41.952 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/index.html - null null
+2025-12-08 22:39:42.042 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/index.html - 200 null text/html;charset=utf-8 91.4584ms
+2025-12-08 22:39:42.068 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/index.js - null null
+2025-12-08 22:39:42.070 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/index.js - 200 null application/javascript;charset=utf-8 2.3404ms
+2025-12-08 22:39:43.376 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/v1/swagger.json - null null
+2025-12-08 22:39:43.487 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 111.3417ms
+2025-12-08 22:39:48.358 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5090/api/User/register - application/json 178
+2025-12-08 22:39:48.361 +04:00 [WRN] Failed to determine the https port for redirect.
+2025-12-08 22:39:48.394 +04:00 [INF] Executing endpoint 'LoanApi.Controllers.UserController.Register (LoanApi)'
+2025-12-08 22:39:48.409 +04:00 [INF] Route matched with {action = "Register", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(LoanApi.DTOs.UserRegisterDto) on controller LoanApi.Controllers.UserController (LoanApi).
+2025-12-08 22:39:48.577 +04:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2025-12-08 22:39:48.595 +04:00 [INF] Executed action LoanApi.Controllers.UserController.Register (LoanApi) in 183.032ms
+2025-12-08 22:39:48.595 +04:00 [INF] Executed endpoint 'LoanApi.Controllers.UserController.Register (LoanApi)'
+2025-12-08 22:39:48.596 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5090/api/User/register - 400 null application/problem+json; charset=utf-8 238.5423ms
+2025-12-08 22:53:08.220 +04:00 [INF] Application is shutting down...
+2025-12-08 22:53:29.574 +04:00 [INF] User profile is available. Using '/home/gkutubidze/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-12-08 22:53:29.670 +04:00 [INF] Now listening on: http://localhost:5090
+2025-12-08 22:53:29.671 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-08 22:53:29.672 +04:00 [INF] Hosting environment: Development
+2025-12-08 22:53:29.672 +04:00 [INF] Content root path: /home/gkutubidze/LoanApi/LoanApi
+2025-12-08 22:53:31.149 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/index.html - null null
+2025-12-08 22:53:31.239 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/index.html - 200 null text/html;charset=utf-8 91.9755ms
+2025-12-08 22:53:31.266 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/index.js - null null
+2025-12-08 22:53:31.268 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/index.js - 200 null application/javascript;charset=utf-8 2.0578ms
+2025-12-08 22:53:32.340 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/v1/swagger.json - null null
+2025-12-08 22:53:32.452 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 111.5738ms
+2025-12-08 22:56:20.503 +04:00 [INF] Application is shutting down...
