@@ -1,10 +1,3 @@
-# შექმენი README.md ფაილი
-cat > README.md << 'EOF'
-# Loan API - სესხების მართვის სისტემა
-
-ASP.NET Core Web API პროექტი სესხების მოთხოვნების მართვისთვის JWT ავტორიზაციით და Role-Based Access Control-ით.
-
----
 
 ## შინაარსი
 
