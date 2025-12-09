@@ -65,7 +65,7 @@
 
 ### 2. Clone Repository
 ```bash
-git clone <your-repository-url>
+git clone git@github.com:GKutubidze/LoanApi.git
 cd LoanApi
 ```
 
