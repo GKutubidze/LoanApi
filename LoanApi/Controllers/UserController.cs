@@ -28,10 +28,11 @@ public class UserController : ControllerBase
             Email = dto.Email,
             Age = dto.Age,
             MonthlyIncome = dto.MonthlyIncome
+            // Role default-ად User-ია (User Model-ში)
         };
 
         await _userService.RegisterAsync(user, dto.Password);
-        return Ok("User registered");
+        return Ok(new { message = "User registered successfully" });
     }
 
     [HttpPost("login")]
@@ -47,8 +48,30 @@ public class UserController : ControllerBase
     {
         var user = await _userService.GetByIdAsync(id);
         if (user == null)
-            return NotFound();
+            return NotFound(new { message = "User not found" });
 
-        return Ok(user);
+        var response = new UserResponseDto
+        {
+            Id = user.Id,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            UserName = user.UserName,
+            Age = user.Age,
+            Email = user.Email,
+            MonthlyIncome = user.MonthlyIncome,
+            IsBlocked = user.IsBlocked,
+            IsAccountant = user.Role == Enums.UserRole.Accountant
+        };
+
+        return Ok(response);
+    }
+
+    // Accountant: Block/Unblock user
+    [Authorize(Roles = "Accountant")]
+    [HttpPatch("{id}/block")]
+    public async Task<IActionResult> BlockUser(int id, [FromBody] BlockUserDto dto)
+    {
+        await _userService.BlockUserAsync(id, dto.IsBlocked);
+        return Ok(new { message = $"User {(dto.IsBlocked ? "blocked" : "unblocked")} successfully" });
     }
 }
