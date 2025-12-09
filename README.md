@@ -1,3 +1,5 @@
+# შექმენი README.md ფაილი
+cat > README.md << 'EOF'
 # Loan API - სესხების მართვის სისტემა
 
 ASP.NET Core Web API პროექტი სესხების მოთხოვნების მართვისთვის JWT ავტორიზაციით და Role-Based Access Control-ით.
@@ -64,7 +66,7 @@ ASP.NET Core Web API პროექტი სესხების მოთხ
 ### 1. Prerequisites
 
 დააინსტალირე შემდეგი:
-- .NET 10 SDK (https://dotnet.microsoft.com/download)
+- .NET 10 SDK
 - SQL Server 2019+ ან SQL Server Express
 - (Optional) JetBrains Rider / Visual Studio 2022 / VS Code
 
@@ -107,21 +109,12 @@ cd LoanApi
 ### 4. Database Migration
 ```bash
 cd LoanApi
-
-# Migration-ის გაშვება (ბაზის შექმნა)
-dotnet ef database update
-
-# თუ მიგრაცია არ არსებობს, შექმენი:
-dotnet ef migrations add InitialMigration
 dotnet ef database update
 ```
 
 ### 5. Build & Run
 ```bash
-# Build
 dotnet build
-
-# Run
 dotnet run
 ```
 
@@ -137,55 +130,32 @@ dotnet run
 ```
 LoanApi/
 ├── Controllers/              # API Endpoints
-│   ├── UserController.cs     # რეგისტრაცია, ლოგინი, მომხმარებლის ინფო
-│   └── LoanController.cs     # სესხის CRUD ოპერაციები
-│
-├── Services/                 # Business Logic Layer
-│   ├── UserService.cs        # მომხმარებლის ლოგიკა
-│   ├── LoanService.cs        # სესხის ლოგიკა
-│   └── JwtService.cs         # Token Generation
-│
-├── Interfaces/               # Abstractions (SOLID)
+│   ├── UserController.cs
+│   └── LoanController.cs
+├── Services/                 # Business Logic
+│   ├── UserService.cs
+│   ├── LoanService.cs
+│   └── JwtService.cs
+├── Interfaces/               # Abstractions
 │   ├── IUserService.cs
 │   ├── ILoanService.cs
 │   └── IJwtService.cs
-│
-├── Models/                   # Domain Models & DTOs
-│   ├── User.cs               # Entity Model
-│   ├── Loan.cs               # Entity Model
-│   └── DTOs/                 # Data Transfer Objects
-│       ├── UserRegisterDto.cs
-│       ├── UserLoginDto.cs
-│       ├── LoanCreateDto.cs
-│       └── ...
-│
-├── Data/                     # Database Context & Migrations
-│   ├── LoanDbContext.cs      # EF Core DbContext
-│   └── Migrations/           # Database Version Control
-│
-├── Validators/               # FluentValidation Rules
-│   ├── UserRegisterDtoValidator.cs
-│   ├── LoanCreateDtoValidator.cs
-│   └── LoanUpdateDtoValidator.cs
-│
-├── Middleware/               # HTTP Pipeline Middleware
-│   └── ExceptionMiddleware.cs  # Global Exception Handler
-│
+├── Models/                   # Domain Models
+│   ├── User.cs
+│   ├── Loan.cs
+│   └── DTOs/
+├── Data/                     # Database
+│   ├── LoanDbContext.cs
+│   └── Migrations/
+├── Validators/               # FluentValidation
+├── Middleware/               # Exception Handler
 ├── Enums/                    # Enumerations
-│   └── Enum.cs               # LoanType, LoanStatus, UserRole
-│
-├── Logs/                     # Serilog Log Files
-│   └── log-YYYYMMDD.txt
-│
-└── Program.cs                # Application Entry Point
+└── Program.cs
 
-LoanApi.Tests/                # Unit Tests Project
+LoanApi.Tests/                # Unit Tests
 ├── Services/
 │   ├── UserServiceTests.cs
 │   └── LoanServiceTests.cs
-└── Controllers/
-    ├── UserControllerTests.cs
-    └── LoanControllerTests.cs
 ```
 
 ### SOLID პრინციპები
@@ -218,6 +188,10 @@ LoanApi.Tests/                # Unit Tests Project
 **GET /api/user/{id}** - მომხმარებლის ინფორმაცია
 - Authorization: Bearer Token (ნებისმიერი როლი)
 - აბრუნებს მომხმარებლის დეტალებს ID-ის მიხედვით
+
+**PATCH /api/user/{id}/block** - მომხმარებლის დაბლოკვა
+- Authorization: Bearer Token (Accountant)
+- ბლოკავს/განბლოკავს მომხმარებელს
 
 ### Loan Operations (User Role)
 
@@ -266,22 +240,23 @@ Content-Type: application/json
   "age": 25,
   "email": "giorgi@example.com",
   "monthlyIncome": 2500.00,
-  "password": "securepass123",
-  "isAccountant": false
+  "password": "securepass123"
 }
 ```
 
 **Response (200 OK):**
 ```json
-"User registered"
+{
+  "message": "User registered successfully"
+}
 ```
 
 **Validation Rules:**
-- firstName: 2-50 სიმბოლო, სავალდებულო
-- lastName: 2-50 სიმბოლო, სავალდებულო
-- userName: 3-30 სიმბოლო, მხოლოდ ასოები/ციფრები/_, უნიკალური
+- firstName: სავალდებულო, max 50 სიმბოლო
+- lastName: სავალდებულო, max 50 სიმბოლო
+- userName: სავალდებულო, max 50 სიმბოლო, უნიკალური
 - email: ვალიდური ელფოსტა, უნიკალური
-- age: 18-100 წელი
+- age: მინიმუმ 18 წელი
 - monthlyIncome: > 0
 - password: მინიმუმ 6 სიმბოლო
 
@@ -308,11 +283,11 @@ Content-Type: application/json
 **Response (200 OK):**
 ```json
 {
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwibmFtZSI6Imdrdeh..."
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
 ```
 
-**JWT Token შემადგენლობა (Claims):**
+**JWT Token შემადგენლობა:**
 - NameIdentifier: user.Id
 - Name: user.UserName
 - Role: "User" ან "Accountant"
@@ -332,7 +307,7 @@ Authorization: Bearer {token}
 
 **Request:**
 ```http
-GET /api/user/{id}
+GET /api/user/1
 Authorization: Bearer {token}
 ```
 
@@ -347,12 +322,12 @@ Authorization: Bearer {token}
   "email": "giorgi@example.com",
   "monthlyIncome": 2500.00,
   "isBlocked": false,
-  "role": 0
+  "isAccountant": false
 }
 ```
 
 **Possible Errors:**
-- 401: Unauthorized (არასწორი token)
+- 401: Unauthorized
 - 404: "User not found"
 
 ---
@@ -378,11 +353,6 @@ Content-Type: application/json
 - 1 = AutoLoan (ავტო სესხი)
 - 2 = Installment (განვადება)
 
-**Validation Rules:**
-- amount: 0 < თანხა <= 1,000,000
-- currency: "GEL", "USD", "EUR"
-- loanPeriod: 1-360 თვე
-
 **Response (200 OK):**
 ```json
 {
@@ -398,7 +368,7 @@ Content-Type: application/json
 
 **Possible Errors:**
 - 401: Unauthorized
-- 403: "User is blocked and cannot request loans"
+- 400: "User is blocked and cannot request loans"
 - 400: Validation errors
 
 ---
@@ -422,15 +392,6 @@ Authorization: Bearer {token}
     "currency": "GEL",
     "loanPeriod": 12,
     "status": 0
-  },
-  {
-    "id": 2,
-    "userId": 1,
-    "loanType": 1,
-    "amount": 20000.00,
-    "currency": "USD",
-    "loanPeriod": 60,
-    "status": 1
   }
 ]
 ```
@@ -441,7 +402,7 @@ Authorization: Bearer {token}
 
 **Request:**
 ```http
-PUT /api/loan/{id}
+PUT /api/loan/1
 Authorization: Bearer {token}
 Content-Type: application/json
 
@@ -467,7 +428,7 @@ Content-Type: application/json
 ```
 
 **Possible Errors:**
-- 403: "Access denied" (არ არის შენი სესხი)
+- 403: "Access denied"
 - 400: "Only loans in processing status can be updated"
 
 ---
@@ -476,7 +437,7 @@ Content-Type: application/json
 
 **Request:**
 ```http
-DELETE /api/loan/{id}
+DELETE /api/loan/1
 Authorization: Bearer {token}
 ```
 
@@ -522,6 +483,28 @@ Authorization: Bearer {accountant-token}
 
 ---
 
+### 9. მომხმარებლის დაბლოკვა (Accountant)
+
+**Request:**
+```http
+PATCH /api/user/1/block
+Authorization: Bearer {accountant-token}
+Content-Type: application/json
+
+{
+  "isBlocked": true
+}
+```
+
+**Response (200 OK):**
+```json
+{
+  "message": "User blocked successfully"
+}
+```
+
+---
+
 ## ბიზნეს წესები
 
 ### User შეზღუდვები
@@ -529,7 +512,7 @@ Authorization: Bearer {accountant-token}
 - შეუძლია მხოლოდ საკუთარი სესხების ნახვა/მართვა
 - არ შეუძლია სტატუსის შეცვლა
 - არ შეუძლია სხვა მომხმარებლის სესხების ნახვა
-- დაბლოკილ მომხმარებელს (IsBlocked=true) არ შეუძლია სესხის მოთხოვნა
+- დაბლოკილ მომხმარებელს არ შეუძლია სესხის მოთხოვნა
 - განახლება/წაშლა მხოლოდ Processing სტატუსით
 
 ### Accountant უფლებები
@@ -537,13 +520,13 @@ Authorization: Bearer {accountant-token}
 - ყველა სესხის ნახვა
 - ნებისმიერი სესხის სტატუსის შეცვლა
 - ნებისმიერი სესხის სრული განახლება
-- ნებისმიერი სესხის წაშლა (სტატუსს არ აქვს მნიშვნელობა)
+- ნებისმიერი სესხის წაშლა
 - მომხმარებლების დაბლოკვა/განბლოკვა
 
 ### სესხის სტატუსები
 ```
 LoanStatus:
-  0 = Processing   (დამუშავების პროცესში - default)
+  0 = Processing   (დამუშავების პროცესში)
   1 = Approved     (დამტკიცებული)
   2 = Rejected     (უარყოფილი)
 ```
@@ -594,50 +577,41 @@ Token-ის ვადა: 3 საათი
 
 ## ტესტების გაშვება
 ```bash
-# Navigate to test project
 cd LoanApi.Tests
-
-# Run all tests
 dotnet test
-
-# Run with detailed output
-dotnet test --verbosity detailed
-
-# Run with code coverage
-dotnet test /p:CollectCoverage=true
 ```
 
 ### ტესტების სტრუქტურა
 ```
 LoanApi.Tests/
 ├── Services/
-│   ├── UserServiceTests.cs      (12+ tests)
-│   └── LoanServiceTests.cs      (10+ tests)
-└── Controllers/
-    ├── UserControllerTests.cs
-    └── LoanControllerTests.cs
+│   ├── UserServiceTests.cs      (9 tests)
+│   └── LoanServiceTests.cs      (11 tests)
 ```
 
 ### ტესტების მაგალითები
 
 **UserServiceTests:**
-- RegisterAsync_ShouldCreateUser_WhenValidData
-- RegisterAsync_ShouldThrowException_WhenUsernameExists
-- RegisterAsync_ShouldThrowException_WhenEmailExists
-- LoginAsync_ShouldReturnToken_WhenValidCredentials
-- LoginAsync_ShouldThrowException_WhenUserNotFound
-- LoginAsync_ShouldThrowException_WhenUserIsBlocked
-- LoginAsync_ShouldThrowException_WhenInvalidPassword
-- BlockUserAsync_ShouldBlockUser_WhenCalled
-- GetByIdAsync_ShouldReturnUser_WhenExists
+- RegisterAsync_ValidUser_CreatesUser
+- RegisterAsync_DuplicateUsername_ThrowsException
+- LoginAsync_ValidCredentials_ReturnsToken
+- LoginAsync_WrongPassword_ThrowsException
+- LoginAsync_BlockedUser_ThrowsException
+- GetByIdAsync_ExistingUser_ReturnsUser
+- BlockUserAsync_UpdatesIsBlockedStatus
+- BlockUserAsync_UserNotFound_ThrowsException
 
 **LoanServiceTests:**
-- CreateLoanAsync_ShouldCreateLoan_WhenUserNotBlocked
-- CreateLoanAsync_ShouldThrowException_WhenUserBlocked
-- UpdateLoanAsync_ShouldUpdate_WhenStatusIsProcessing
-- UpdateLoanAsync_ShouldThrowException_WhenStatusNotProcessing
-- DeleteLoanAsync_ShouldDelete_WhenStatusIsProcessing
-- GetUserLoansAsync_ShouldReturnOnlyUserLoans
+- CreateLoanAsync_ValidUser_CreatesLoan
+- CreateLoanAsync_UserNotFound_ThrowsException
+- CreateLoanAsync_BlockedUser_ThrowsException
+- GetUserLoansAsync_ReturnsOnlyUserLoans
+- UpdateLoanAsync_ValidLoan_UpdatesLoan
+- UpdateLoanAsync_WrongUser_ThrowsException
+- UpdateLoanAsync_WrongStatus_ThrowsException
+- DeleteLoanAsync_ValidLoan_DeletesLoan
+- DeleteLoanAsync_WrongStatus_ThrowsException
+- GetAllLoansAsync_ReturnsAllLoans
 
 ---
 
@@ -647,22 +621,14 @@ LoanApi.Tests/
 
 ყველა exception იჭერს ExceptionMiddleware და აბრუნებს user-friendly შეტყობინებას:
 ```csharp
-// Program.cs
 app.UseMiddleware<ExceptionMiddleware>();
 ```
 
 **რა ხდება Exception-ის შემთხვევაში:**
 1. Exception იჭერს Middleware
 2. აბრუნებს 400 Bad Request
-3. Body: { "error": "error message" }
+3. Response: `{ "error": "error message" }`
 4. ლოგავს Serilog-ით
-
-**მაგალითი:**
-```json
-{
-  "error": "User is blocked and cannot request loans"
-}
-```
 
 ---
 
@@ -670,29 +636,29 @@ app.UseMiddleware<ExceptionMiddleware>();
 
 FluentValidation ავტომატურად ამოწმებს Request Body-ს.
 
-### UserRegisterDto Validation
+### UserRegisterDto
 
-- firstName: 2-50 სიმბოლო, სავალდებულო
-- lastName: 2-50 სიმბოლო, სავალდებულო
-- userName: 3-30 სიმბოლო, ასოები/ციფრები/_, უნიკალური
-- email: ვალიდური format, უნიკალური
-- age: 18-100 წელი
+- firstName: სავალდებულო, max 50 სიმბოლო
+- lastName: სავალდებულო, max 50 სიმბოლო
+- userName: სავალდებულო, max 50 სიმბოლო
+- email: ვალიდური format
+- age: >= 18
 - monthlyIncome: > 0
 - password: >= 6 სიმბოლო
 
-### LoanCreateDto Validation
+### LoanCreateDto
 
-- amount: 0 < amount <= 1,000,000
-- currency: "GEL" | "USD" | "EUR"
-- loanPeriod: 1-360 თვე
+- amount: > 0
+- currency: სავალდებულო, max 10 სიმბოლო
+- loanPeriod: > 0
 - loanType: IsInEnum
 
 ### Validation Error Response
 ```json
 {
   "errors": {
-    "UserName": ["Username უნდა იყოს მინიმუმ 3 სიმბოლო"],
-    "Email": ["ელფოსტის ფორმატი არასწორია"]
+    "UserName": ["Username is required"],
+    "Email": ["Invalid email format"]
   }
 }
 ```
@@ -743,8 +709,8 @@ CREATE TABLE Loans (
 ### Serilog Configuration
 
 - **Console Sink**: Console-ში წერს INFO+ logs
-- **File Sink**: Logs/log-YYYYMMDD.txt ფაილებში
-- **Rolling Interval**: Daily (ყოველდღე ახალი ფაილი)
+- **File Sink**: `Logs/log-YYYYMMDD.txt` ფაილებში
+- **Rolling Interval**: Daily
 
 ### Log Levels
 ```csharp
@@ -765,11 +731,10 @@ cat Logs/log-20251209.txt
 | Code | Meaning | როდის ამოდის |
 |------|---------|-------------|
 | 200 | OK | წარმატებული request |
-| 400 | Bad Request | ვალიდაციის შეცდომა / Business logic error |
+| 400 | Bad Request | ვალიდაციის შეცდომა / Business error |
 | 401 | Unauthorized | Token არ არის / არასწორია |
 | 403 | Forbidden | Token OK-ია, მაგრამ Role არ უშვებს |
 | 404 | Not Found | რესურსი ვერ მოიძებნა |
-| 500 | Internal Server Error | სერვერის შიდა შეცდომა |
 
 ---
 
@@ -790,9 +755,9 @@ http://localhost:5090/swagger
 
 1. დააჭირე POST /api/user/login
 2. Execute → დააკოპირე token
-3. დააჭირე Authorize ღილაკს (ზემოთ მარჯვნივ)
-4. ჩაწერე: Bearer {შენი-token}
-5. Authorize → ახლა ყველა protected endpoint-ზე გიშვებს
+3. დააჭირე Authorize ღილაკს
+4. ჩაწერე: `Bearer {token}`
+5. Authorize
 
 ### 4. ტესტირება
 
@@ -803,75 +768,43 @@ http://localhost:5090/swagger
 
 ---
 
-## Known Issues & Limitations
-
-### არ არის იმპლემენტირებული:
-
-- Rate Limiting (რექვესტების შეზღუდვა)
-- Email Verification (ელფოსტის დადასტურება)
-- Password Reset (პაროლის აღდგენა)
-- Refresh Token (Token-ის განახლება)
-- Pagination (სიების pagination)
-- Soft Delete (მონაცემების "რბილი" წაშლა)
-
-### შეზღუდვები:
-
-- Logs მხოლოდ ფაილებში (არა DB-ში)
-- JWT Secret არ უნდა შეინახოს Git-ში (appsettings.json ignored)
-- არ არის CORS Configuration (საჭიროა Frontend-ისთვის)
-
----
-
-## პროექტის სტრუქტურის განმარტება
-
-### რატომ Interfaces?
-```csharp
-// SOLID - Dependency Inversion Principle
-public class UserController {
-    private readonly IUserService _userService;  // Interface, არა კონკრეტული კლასი
-}
-```
-
-კლასები დამოკიდებულნი არიან Abstraction-ზე (ინტერფეისი), რაც აადვილებს:
-- Testing (Mocking)
-- Dependency Injection
-- Code Maintainability
-
-### რატომ DTOs?
-```csharp
-// არ ვაბრუნებთ პირდაპირ Entity-ს (Security)
-public class UserResponseDto {
-    // მხოლოდ საჭირო ველები, არა PasswordHash
-}
-```
-
-DTOs (Data Transfer Objects) გვიცავს:
-- არ ვაჩვენებთ PasswordHash-ს
-- არ ვაბრუნებთ არასაჭირო ველებს
-- შეგვიძლია სხვადასხვა Response Format
-
-### რატომ Middleware?
-```csharp
-// Global Exception Handler
-app.UseMiddleware<ExceptionMiddleware>();
-```
-
-ერთ ადგილას ხდება ყველა Exception-ის დამუშავება, არა თითოეულ Controller-ში try-catch.
-
----
-
 ## Libraries განმარტება
 
 ### BCrypt
 
-რატომ არა MD5/SHA256?
-- MD5/SHA256: სწრაფი → brute force-ისთვის მარტივი
-- BCrypt: ნელი by design → brute force-ისთვის რთული
-- BCrypt იყენებს salt-ს → ერთი password, სხვადასხვა hash
+- MD5/SHA256 unsafe-ია brute force-ისთვის
+- BCrypt იყენებს salt-ს
+- ნელი by design
 - ინდუსტრიის სტანდარტი
 
 ### Serilog
 
-რატომ არა Console.WriteLine?
-- Structured Logging: ლოგს აქვს სტრუქტურა (JSON format)
-- Multiple Sinks: Console + File + DB
+- Structured Logging
+- Multiple Sinks (Console + File)
+- Filtering (Info, Warning, Error)
+- Production-ready
+
+### FluentValidation
+
+- უფრო მოქნილია [Required] Attributes-ზე
+- რთული ვალიდაციის დაწერა შესაძლებელია
+- Testable
+- Separation of Concerns
+
+---
+
+## Author
+
+გიორგი კუთუბიძე
+Free University of Tbilisi
+Introduction to Programming - Final Project
+December 2024
+
+---
+
+## License
+
+Academic Project - Educational Use Only
+EOF
+
+echo "README.md ფაილი შეიქმნა!"
