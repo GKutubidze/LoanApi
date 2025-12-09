@@ -227,3 +227,4 @@ WHERE [u].[UserName] = @__username_0
 2025-12-09 13:04:48.515 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/index.js - 200 null application/javascript;charset=utf-8 1.585ms
 2025-12-09 13:04:49.946 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/v1/swagger.json - null null
 2025-12-09 13:04:50.049 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 102.6285ms
+2025-12-09 13:26:11.778 +04:00 [INF] Application is shutting down...
