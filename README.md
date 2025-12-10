@@ -165,57 +165,70 @@ LoanApi.Tests/                # Unit Tests
 
 ### Authentication
 
-**POST /api/user/register** - მომხმარებლის რეგისტრაცია
-- Authorization: არ სჭირდება
+**POST /api/user/register** – მომხმარებლის რეგისტრაცია
+- Authorization: ❌ არ სჭირდება
 - აკეთებს ახალი მომხმარებლის რეგისტრაციას
 - პაროლს ჰეშავს BCrypt-ით
-- Default როლი: User
+- Default როლი: **User**
 
-**POST /api/user/login** - ავტორიზაცია
-- Authorization: არ სჭირდება
+**POST /api/user/login** – ავტორიზაცია
+- Authorization: ❌ არ სჭირდება
 - ამოწმებს credentials-ს და აბრუნებს JWT Token-ს
-- Token-ის ვადა: 3 საათი
+- Token-ის ვადა: **3 საათი**
+
+---
 
 ### User Management
 
-**GET /api/user/{id}** - მომხმარებლის ინფორმაცია
-- Authorization: Bearer Token (ნებისმიერი როლი)
+**GET /api/user/{id}** – მომხმარებლის ინფორმაცია
+- Authorization: Bearer Token (User ან Accountant)
 - აბრუნებს მომხმარებლის დეტალებს ID-ის მიხედვით
 
-**PATCH /api/user/{id}/block** - მომხმარებლის დაბლოკვა
-- Authorization: Bearer Token (Accountant)
-- ბლოკავს/განბლოკავს მომხმარებელს
+**PATCH /api/user/{id}/block** – მომხმარებლის დაბლოკვა/განბლოკვა
+- Authorization: Bearer Token (**Accountant**)
+- ბლოკავს ან განბლოკავს მომხმარებელს
+
+---
 
 ### Loan Operations (User Role)
 
-**POST /api/loan** - სესხის მოთხოვნა
-- Authorization: Bearer Token (User)
+**POST /api/loan/user** – სესხის მოთხოვნა
+- Authorization: Bearer Token (**User**)
 - ქმნის ახალ სესხის მოთხოვნას
-- Default სტატუსი: Processing
-- ამოწმებს არის თუ არა მომხმარებელი დაბლოკილი
+- Default სტატუსი: **Processing**
+- ამოწმებს, არის თუ არა მომხმარებელი დაბლოკილი
 
-**GET /api/loan/my** - ჩემი სესხების ნახვა
-- Authorization: Bearer Token (User)
+**GET /api/loan/user/my** – ჩემი სესხების ნახვა
+- Authorization: Bearer Token (**User**)
 - აბრუნებს მხოლოდ ავტორიზებული მომხმარებლის სესხებს
 
-**PUT /api/loan/{id}** - სესხის განახლება
-- Authorization: Bearer Token (User)
+**PUT /api/loan/user/{id}** – სესხის განახლება
+- Authorization: Bearer Token (**User**)
 - ანახლებს საკუთარ სესხს
-- მხოლოდ Processing სტატუსით
-- სტატუსის შეცვლა არ შეუძლია
+- შეიძლება მხოლოდ **Processing** სტატუსის სესხზე
+- სტატუსის შეცვლა User-ს არ შეუძლია
 
-**DELETE /api/loan/{id}** - სესხის წაშლა
-- Authorization: Bearer Token (User)
+**DELETE /api/loan/user/{id}** – სესხის წაშლა
+- Authorization: Bearer Token (**User**)
 - შლის საკუთარ სესხს
-- მხოლოდ Processing სტატუსით
+- შეიძლება მხოლოდ **Processing** სტატუსის სესხის წაშლა
+
+---
 
 ### Accountant Operations
 
-**GET /api/loan/all** - ყველა სესხის ნახვა
-- Authorization: Bearer Token (Accountant)
+**GET /api/loan/accountant/all** – ყველა სესხის ნახვა
+- Authorization: Bearer Token (**Accountant**)
 - აბრუნებს ყველა მომხმარებლის ყველა სესხს
 
----
+**PUT /api/loan/accountant/{id}** – ნებისმიერი სესხის განახლება
+- Authorization: Bearer Token (**Accountant**)
+- Accountant-ს შეუძლია განაახლოს ნებისმიერი სტატუსის ნებისმიერი სესხი
+
+**DELETE /api/loan/accountant/{id}** – ნებისმიერი სესხის წაშლა
+- Authorization: Bearer Token (**Accountant**)
+- Accountant-ს შეუძლია წაშალოს ნებისმიერი სტატუსის სესხი
+
 
 ## Request/Response მაგალითები
 

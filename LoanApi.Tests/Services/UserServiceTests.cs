@@ -70,7 +70,9 @@ public class UserServiceTests
             LastName = "User",
             UserName = "duplicate",
             Email = "old@test.com",
-            PasswordHash = "hash"
+            PasswordHash = "hash",
+            Age = 25,
+            MonthlyIncome = 1000
         });
         await context.SaveChangesAsync();
 
@@ -79,7 +81,9 @@ public class UserServiceTests
             FirstName = "New",
             LastName = "User",
             UserName = "duplicate",
-            Email = "new@test.com"
+            Email = "new@test.com",
+            Age = 25,
+            MonthlyIncome = 1000
         };
 
         var ex = await Assert.ThrowsAsync<Exception>(() => service.RegisterAsync(newUser, "pass"));
@@ -104,7 +108,11 @@ public class UserServiceTests
             Email = "login@test.com",
             PasswordHash = hashed,
             IsBlocked = false,
-            Role = UserRole.User
+            Role = UserRole.User,
+            FirstName = "Test",
+            LastName = "User",
+            Age = 25,
+            MonthlyIncome = 1000
         });
 
         await context.SaveChangesAsync();
@@ -126,7 +134,11 @@ public class UserServiceTests
             UserName = "wrongpassuser",
             Email = "wp@test.com",
             PasswordHash = BCrypt.Net.BCrypt.HashPassword("correct_pass"),
-            IsBlocked = false
+            IsBlocked = false,
+            FirstName = "Test",
+            LastName = "User",
+            Age = 25,
+            MonthlyIncome = 1000
         });
 
         await context.SaveChangesAsync();
@@ -149,7 +161,11 @@ public class UserServiceTests
             UserName = "blockeduser",
             Email = "blocked@test.com",
             PasswordHash = BCrypt.Net.BCrypt.HashPassword("pass"),
-            IsBlocked = true
+            IsBlocked = true,
+            FirstName = "Test",
+            LastName = "User",
+            Age = 25,
+            MonthlyIncome = 1000
         });
 
         await context.SaveChangesAsync();
@@ -166,9 +182,21 @@ public class UserServiceTests
         var context = GetInMemoryDbContext();
         var service = new UserService(context, new Mock<IJwtService>().Object);
 
-        var user = new User { UserName = "findme", Email = "f@t.com", PasswordHash = "h" };
+        var user = new User
+        {
+            UserName = "findme",
+            Email = "f@t.com",
+            PasswordHash = "h",
+            FirstName = "Test",
+            LastName = "User",
+            Age = 25,
+            MonthlyIncome = 1000
+        };
         context.Users.Add(user);
         await context.SaveChangesAsync();
+
+        // Detach to simulate fresh query
+        context.Entry(user).State = EntityState.Detached;
 
         var result = await service.GetByIdAsync(user.Id);
 
@@ -177,12 +205,33 @@ public class UserServiceTests
     }
 
     [Fact]
+    public async Task GetByIdAsync_NonExistingUser_ReturnsNull()
+    {
+        var context = GetInMemoryDbContext();
+        var service = new UserService(context, new Mock<IJwtService>().Object);
+
+        var result = await service.GetByIdAsync(999);
+
+        Assert.Null(result);
+    }
+
+    [Fact]
     public async Task BlockUserAsync_UpdatesIsBlockedStatus()
     {
         var context = GetInMemoryDbContext();
         var service = new UserService(context, new Mock<IJwtService>().Object);
 
-        var user = new User { UserName = "tobeBlocked", IsBlocked = false, PasswordHash = "h" };
+        var user = new User
+        {
+            UserName = "tobeBlocked",
+            IsBlocked = false,
+            PasswordHash = "h",
+            FirstName = "Test",
+            LastName = "User",
+            Email = "test@test.com",
+            Age = 25,
+            MonthlyIncome = 1000
+        };
         context.Users.Add(user);
         await context.SaveChangesAsync();
 

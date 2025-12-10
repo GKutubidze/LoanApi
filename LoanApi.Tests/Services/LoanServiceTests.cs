@@ -18,13 +18,45 @@ public class LoanServiceTests
         return new LoanDbContext(options);
     }
 
+    // დამხმარე მეთოდი იუზერის შესაქმნელად (Required Fields რომ შევსებული იყოს)
+    private User CreateUser(int id, string username, bool isBlocked = false)
+    {
+        return new User
+        {
+            Id = id,
+            UserName = username,
+            IsBlocked = isBlocked,
+            FirstName = "Test",
+            LastName = "User",
+            Email = $"{username}@test.com",
+            PasswordHash = "dummyhash123",
+            Age = 25,
+            MonthlyIncome = 1000,
+            Role = UserRole.User
+        };
+    }
+
+    // დამხმარე მეთოდი სესხის შესაქმნელად (Currency და სხვა ველები რომ შევსებული იყოს)
+    private Loan CreateLoan(int id, int userId, decimal amount, LoanStatus status = LoanStatus.Processing)
+    {
+        return new Loan
+        {
+            Id = id,
+            UserId = userId,
+            Amount = amount,
+            Status = status,
+            Currency = "GEL",
+            LoanPeriod = 12
+        };
+    }
+
     [Fact]
     public async Task CreateLoanAsync_ValidUser_CreatesLoan()
     {
         var context = GetInMemoryDbContext();
         var service = new LoanService(context);
 
-        var user = new User { Id = 1, UserName = "test", IsBlocked = false };
+        var user = CreateUser(1, "test");
         context.Users.Add(user);
         await context.SaveChangesAsync();
 
@@ -43,7 +75,7 @@ public class LoanServiceTests
         var context = GetInMemoryDbContext();
         var service = new LoanService(context);
 
-        var loan = new Loan { Amount = 1000 };
+        var loan = new Loan { Amount = 1000, Currency = "GEL", LoanPeriod = 12 };
 
         var ex = await Assert.ThrowsAsync<Exception>(() =>
             service.CreateLoanAsync(99, loan));
@@ -57,11 +89,11 @@ public class LoanServiceTests
         var context = GetInMemoryDbContext();
         var service = new LoanService(context);
 
-        var user = new User { Id = 1, UserName = "blocked", IsBlocked = true };
+        var user = CreateUser(1, "blocked", isBlocked: true);
         context.Users.Add(user);
         await context.SaveChangesAsync();
 
-        var loan = new Loan { Amount = 1000 };
+        var loan = new Loan { Amount = 1000, Currency = "GEL", LoanPeriod = 12 };
 
         var ex = await Assert.ThrowsAsync<Exception>(() =>
             service.CreateLoanAsync(1, loan));
@@ -75,10 +107,13 @@ public class LoanServiceTests
         var context = GetInMemoryDbContext();
         var service = new LoanService(context);
 
+        context.Users.Add(CreateUser(1, "user1"));
+        context.Users.Add(CreateUser(2, "user2"));
+        
         context.Loans.AddRange(
-            new Loan { Id = 1, UserId = 1, Amount = 100 },
-            new Loan { Id = 2, UserId = 1, Amount = 200 },
-            new Loan { Id = 3, UserId = 2, Amount = 300 }
+            CreateLoan(1, 1, 100),
+            CreateLoan(2, 1, 200),
+            CreateLoan(3, 2, 300)
         );
 
         await context.SaveChangesAsync();
@@ -95,15 +130,8 @@ public class LoanServiceTests
         var context = GetInMemoryDbContext();
         var service = new LoanService(context);
 
-        var loan = new Loan
-        {
-            Id = 1,
-            UserId = 1,
-            Status = LoanStatus.Processing,
-            Amount = 100
-        };
-
-        context.Loans.Add(loan);
+        context.Users.Add(CreateUser(1, "user1"));
+        context.Loans.Add(CreateLoan(1, 1, 100));
         await context.SaveChangesAsync();
 
         var update = new Loan
@@ -125,17 +153,14 @@ public class LoanServiceTests
         var context = GetInMemoryDbContext();
         var service = new LoanService(context);
 
-        context.Loans.Add(new Loan
-        {
-            Id = 1,
-            UserId = 1,
-            Status = LoanStatus.Processing
-        });
-
+        context.Users.Add(CreateUser(1, "user1"));
+        context.Loans.Add(CreateLoan(1, 1, 100));
         await context.SaveChangesAsync();
 
+        var updateLoan = new Loan { Currency = "GEL", LoanPeriod = 12 };
+
         var ex = await Assert.ThrowsAsync<Exception>(() =>
-            service.UpdateLoanAsync(2, 1, new Loan()));
+            service.UpdateLoanAsync(2, 1, updateLoan));
 
         Assert.Equal("Access denied", ex.Message);
     }
@@ -146,17 +171,14 @@ public class LoanServiceTests
         var context = GetInMemoryDbContext();
         var service = new LoanService(context);
 
-        context.Loans.Add(new Loan
-        {
-            Id = 1,
-            UserId = 1,
-            Status = LoanStatus.Approved
-        });
-
+        context.Users.Add(CreateUser(1, "user1"));
+        context.Loans.Add(CreateLoan(1, 1, 100, LoanStatus.Approved)); // სტატუსი Approved
         await context.SaveChangesAsync();
+        
+        var updateLoan = new Loan { Currency = "GEL", LoanPeriod = 12 };
 
         var ex = await Assert.ThrowsAsync<Exception>(() =>
-            service.UpdateLoanAsync(1, 1, new Loan()));
+            service.UpdateLoanAsync(1, 1, updateLoan));
 
         Assert.Equal("Only loans in processing status can be updated", ex.Message);
     }
@@ -167,13 +189,8 @@ public class LoanServiceTests
         var context = GetInMemoryDbContext();
         var service = new LoanService(context);
 
-        context.Loans.Add(new Loan
-        {
-            Id = 1,
-            UserId = 1,
-            Status = LoanStatus.Processing
-        });
-
+        context.Users.Add(CreateUser(1, "user1"));
+        context.Loans.Add(CreateLoan(1, 1, 100));
         await context.SaveChangesAsync();
 
         await service.DeleteLoanAsync(1, 1);
@@ -187,19 +204,16 @@ public class LoanServiceTests
         var context = GetInMemoryDbContext();
         var service = new LoanService(context);
 
-        context.Loans.Add(new Loan
-        {
-            Id = 1,
-            UserId = 1,
-            Status = LoanStatus.Rejected
-        });
-
+        context.Users.Add(CreateUser(1, "user1"));
+        // სტატუსს ვაყენებთ Rejected-ზე, რომ exception გამოიწვიოს
+        context.Loans.Add(CreateLoan(1, 1, 100, LoanStatus.Rejected)); 
         await context.SaveChangesAsync();
 
         var ex = await Assert.ThrowsAsync<Exception>(() =>
             service.DeleteLoanAsync(1, 1));
 
-        Assert.Equal("Only loans in processing status can be deleted", ex.Message);
+        // შესწორებულია LoanService.cs-ის მიხედვით:
+        Assert.Equal("Only processing loans can be deleted", ex.Message);
     }
 
     [Fact]
@@ -208,11 +222,11 @@ public class LoanServiceTests
         var context = GetInMemoryDbContext();
         var service = new LoanService(context);
 
-        context.Users.Add(new User { Id = 1, UserName = "user1" });
+        context.Users.Add(CreateUser(1, "user1"));
 
         context.Loans.AddRange(
-            new Loan { Id = 1, UserId = 1, Amount = 100 },
-            new Loan { Id = 2, UserId = 1, Amount = 200 }
+            CreateLoan(1, 1, 100),
+            CreateLoan(2, 1, 200)
         );
 
         await context.SaveChangesAsync();

@@ -84,4 +84,34 @@ public class LoanService : ILoanService
         _db.Loans.Remove(loan);
         await _db.SaveChangesAsync();
     }
+    
+    // Accountant: Delete any loan
+    public async Task DeleteLoanByAccountantAsync(int loanId)
+    {
+        var loan = await _db.Loans.FindAsync(loanId);
+        if (loan == null)
+            throw new Exception("Loan not found");
+
+        _db.Loans.Remove(loan);
+        await _db.SaveChangesAsync();
+    }
+    
+    
+    // Accountant: Update any loan (any status)
+    public async Task<Loan> UpdateLoanByAccountantAsync(int loanId, Loan updatedLoan)
+    {
+        var loan = await _db.Loans.FindAsync(loanId);
+        if (loan == null)
+            throw new Exception("Loan not found");
+
+        // Accountant can update any loan regardless of status
+        loan.Amount = updatedLoan.Amount;
+        loan.Currency = updatedLoan.Currency;
+        loan.LoanPeriod = updatedLoan.LoanPeriod;
+
+        await _db.SaveChangesAsync();
+        return loan;
+    }
+
+
 }

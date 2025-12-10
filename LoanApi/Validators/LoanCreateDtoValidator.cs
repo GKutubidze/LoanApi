@@ -11,8 +11,9 @@ public class LoanCreateDtoValidator : AbstractValidator<LoanCreateDto>
             .GreaterThan(0).WithMessage("Loan amount must be greater than 0");
 
         RuleFor(x => x.Currency)
-            .NotEmpty().WithMessage("Currency is required")
-            .MaximumLength(10).WithMessage("Currency code must not exceed 10 characters");
+            .Matches("^[A-Z]{3}$")
+            .WithMessage("Currency must be a valid 3-letter ISO code (e.g., USD, EUR, GEL)");
+
 
         RuleFor(x => x.LoanPeriod)
             .GreaterThan(0).WithMessage("Loan period must be greater than 0 months");

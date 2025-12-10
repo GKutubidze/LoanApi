@@ -28,7 +28,6 @@ public class UserController : ControllerBase
             Email = dto.Email,
             Age = dto.Age,
             MonthlyIncome = dto.MonthlyIncome
-            // Role default-ად User-ია (User Model-ში)
         };
 
         await _userService.RegisterAsync(user, dto.Password);
@@ -66,9 +65,9 @@ public class UserController : ControllerBase
         return Ok(response);
     }
 
-    // Accountant: Block/Unblock user
+    // ACCOUNTANT: Block/Unblock user
     [Authorize(Roles = "Accountant")]
-    [HttpPatch("{id}/block")]
+    [HttpPatch("accountant/{id}/block")]
     public async Task<IActionResult> BlockUser(int id, [FromBody] BlockUserDto dto)
     {
         await _userService.BlockUserAsync(id, dto.IsBlocked);
