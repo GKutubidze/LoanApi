@@ -1,0 +1,359 @@
+2025-12-10 00:27:44.983 +04:00 [INF] User profile is available. Using '/home/gkutubidze/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-12-10 00:27:45.083 +04:00 [INF] Now listening on: http://localhost:5090
+2025-12-10 00:27:45.084 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-10 00:27:45.084 +04:00 [INF] Hosting environment: Development
+2025-12-10 00:27:45.084 +04:00 [INF] Content root path: /home/gkutubidze/LoanApi/LoanApi
+2025-12-10 00:27:46.411 +04:00 [INF] Application is shutting down...
+2025-12-10 00:40:47.751 +04:00 [INF] User profile is available. Using '/home/gkutubidze/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-12-10 00:40:47.849 +04:00 [INF] Now listening on: http://localhost:5090
+2025-12-10 00:40:47.850 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-10 00:40:47.851 +04:00 [INF] Hosting environment: Development
+2025-12-10 00:40:47.851 +04:00 [INF] Content root path: /home/gkutubidze/LoanApi/LoanApi
+2025-12-10 00:40:48.627 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/ - null null
+2025-12-10 00:40:48.663 +04:00 [WRN] Failed to determine the https port for redirect.
+2025-12-10 00:40:48.686 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/ - 404 0 null 60.317ms
+2025-12-10 00:40:48.695 +04:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5090/, Response status code: 404
+2025-12-10 00:40:51.962 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/index.html - null null
+2025-12-10 00:40:52.022 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/index.html - 200 null text/html;charset=utf-8 59.4384ms
+2025-12-10 00:40:52.138 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/index.js - null null
+2025-12-10 00:40:52.139 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/index.js - 200 null application/javascript;charset=utf-8 1.3757ms
+2025-12-10 00:40:53.606 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/v1/swagger.json - null null
+2025-12-10 00:40:53.710 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 103.391ms
+2025-12-10 00:49:53.868 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5090/api/User/login - application/json 57
+2025-12-10 00:49:53.873 +04:00 [INF] Executing endpoint 'LoanApi.Controllers.UserController.Login (LoanApi)'
+2025-12-10 00:49:53.889 +04:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoanApi.DTOs.UserLoginDto) on controller LoanApi.Controllers.UserController (LoanApi).
+2025-12-10 00:49:54.045 +04:00 [INF] Executing action method LoanApi.Controllers.UserController.Login (LoanApi) - Validation state: "Valid"
+2025-12-10 00:49:54.049 +04:00 [INF] Login attempt for user: user
+2025-12-10 00:49:54.522 +04:00 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'Loan'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-12-10 00:49:54.522 +04:00 [WRN] No store type was specified for the decimal property 'MonthlyIncome' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-12-10 00:49:55.175 +04:00 [INF] Executed DbCommand (43ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Age], [u].[Email], [u].[FirstName], [u].[IsBlocked], [u].[LastName], [u].[MonthlyIncome], [u].[PasswordHash], [u].[Role], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[UserName] = @__username_0
+2025-12-10 00:49:55.469 +04:00 [INF] User logged in successfully: user, Role: "Accountant"
+2025-12-10 00:49:55.497 +04:00 [INF] Executed action method LoanApi.Controllers.UserController.Login (LoanApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1447.9031ms.
+2025-12-10 00:49:55.502 +04:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-10 00:49:55.512 +04:00 [INF] Executed action LoanApi.Controllers.UserController.Login (LoanApi) in 1620.1571ms
+2025-12-10 00:49:55.513 +04:00 [INF] Executed endpoint 'LoanApi.Controllers.UserController.Login (LoanApi)'
+2025-12-10 00:49:55.523 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5090/api/User/login - 200 null application/json; charset=utf-8 1654.1562ms
+2025-12-10 01:20:16.847 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5090/api/Loan - application/json 80
+2025-12-10 01:20:16.888 +04:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (User)
+2025-12-10 01:20:16.890 +04:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-10 01:20:16.890 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5090/api/Loan - 403 0 null 43.1809ms
+2025-12-10 01:25:09.363 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5090/api/Loan - application/json 81
+2025-12-10 01:25:09.365 +04:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (User)
+2025-12-10 01:25:09.365 +04:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-10 01:25:09.365 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5090/api/Loan - 403 0 null 2.4335ms
+2025-12-10 01:25:57.894 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5090/api/Loan - application/json 78
+2025-12-10 01:25:57.896 +04:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (User)
+2025-12-10 01:25:57.896 +04:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-10 01:25:57.896 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5090/api/Loan - 403 0 null 2.0284ms
+2025-12-10 01:27:39.521 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5090/api/Loan - application/json 78
+2025-12-10 01:27:39.521 +04:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (User)
+2025-12-10 01:27:39.521 +04:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-10 01:27:39.521 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5090/api/Loan - 403 0 null 0.7462ms
+2025-12-10 01:30:05.283 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/api/Loan/my - null null
+2025-12-10 01:30:05.283 +04:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (User)
+2025-12-10 01:30:05.284 +04:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-10 01:30:05.284 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/api/Loan/my - 403 0 null 1.1242ms
+2025-12-10 01:30:18.674 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/api/Loan/all - null null
+2025-12-10 01:30:18.676 +04:00 [INF] Executing endpoint 'LoanApi.Controllers.LoanController.GetAllLoans (LoanApi)'
+2025-12-10 01:30:18.681 +04:00 [INF] Route matched with {action = "GetAllLoans", controller = "Loan"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllLoans() on controller LoanApi.Controllers.LoanController (LoanApi).
+2025-12-10 01:30:18.682 +04:00 [INF] Executing action method LoanApi.Controllers.LoanController.GetAllLoans (LoanApi) - Validation state: "Valid"
+2025-12-10 01:30:18.797 +04:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [l].[Id], [l].[Amount], [l].[Currency], [l].[LoanPeriod], [l].[LoanType], [l].[Status], [l].[UserId], [u].[Id], [u].[Age], [u].[Email], [u].[FirstName], [u].[IsBlocked], [u].[LastName], [u].[MonthlyIncome], [u].[PasswordHash], [u].[Role], [u].[UserName]
+FROM [Loans] AS [l]
+INNER JOIN [Users] AS [u] ON [l].[UserId] = [u].[Id]
+2025-12-10 01:30:18.829 +04:00 [INF] Executed action method LoanApi.Controllers.LoanController.GetAllLoans (LoanApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 146.9964ms.
+2025-12-10 01:30:18.829 +04:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[LoanApi.Models.Loan, LoanApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-10 01:30:18.864 +04:00 [INF] Executed action LoanApi.Controllers.LoanController.GetAllLoans (LoanApi) in 183.5154ms
+2025-12-10 01:30:18.865 +04:00 [INF] Executed endpoint 'LoanApi.Controllers.LoanController.GetAllLoans (LoanApi)'
+2025-12-10 01:30:18.866 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/api/Loan/all - 400 null application/json 191.8958ms
+2025-12-10 01:30:55.384 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5090/api/User/login - application/json 57
+2025-12-10 01:30:55.384 +04:00 [INF] Executing endpoint 'LoanApi.Controllers.UserController.Login (LoanApi)'
+2025-12-10 01:30:55.385 +04:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoanApi.DTOs.UserLoginDto) on controller LoanApi.Controllers.UserController (LoanApi).
+2025-12-10 01:30:55.388 +04:00 [INF] Executing action method LoanApi.Controllers.UserController.Login (LoanApi) - Validation state: "Valid"
+2025-12-10 01:30:55.388 +04:00 [INF] Login attempt for user: user
+2025-12-10 01:30:55.455 +04:00 [INF] Executed DbCommand (3ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Age], [u].[Email], [u].[FirstName], [u].[IsBlocked], [u].[LastName], [u].[MonthlyIncome], [u].[PasswordHash], [u].[Role], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[UserName] = @__username_0
+2025-12-10 01:30:55.649 +04:00 [INF] User logged in successfully: user, Role: "Accountant"
+2025-12-10 01:30:55.649 +04:00 [INF] Executed action method LoanApi.Controllers.UserController.Login (LoanApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 260.9508ms.
+2025-12-10 01:30:55.649 +04:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-10 01:30:55.650 +04:00 [INF] Executed action LoanApi.Controllers.UserController.Login (LoanApi) in 264.9923ms
+2025-12-10 01:30:55.650 +04:00 [INF] Executed endpoint 'LoanApi.Controllers.UserController.Login (LoanApi)'
+2025-12-10 01:30:55.650 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5090/api/User/login - 200 null application/json; charset=utf-8 266.1348ms
+2025-12-10 01:31:20.071 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5090/api/Loan - application/json 78
+2025-12-10 01:31:20.071 +04:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (User)
+2025-12-10 01:31:20.071 +04:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-10 01:31:20.071 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5090/api/Loan - 403 0 null 0.7528ms
+2025-12-10 01:32:10.334 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5090/api/Loan - application/json 78
+2025-12-10 01:32:10.335 +04:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (User)
+2025-12-10 01:32:10.335 +04:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-10 01:32:10.335 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5090/api/Loan - 403 0 null 0.8186ms
+2025-12-10 01:43:20.202 +04:00 [INF] Request starting HTTP/1.1 DELETE http://localhost:5090/api/Loan/2 - null null
+2025-12-10 01:43:20.203 +04:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (User)
+2025-12-10 01:43:20.203 +04:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-10 01:43:20.203 +04:00 [INF] Request finished HTTP/1.1 DELETE http://localhost:5090/api/Loan/2 - 403 0 null 0.7238ms
+2025-12-10 01:43:26.289 +04:00 [INF] Request starting HTTP/1.1 DELETE http://localhost:5090/api/Loan/1 - null null
+2025-12-10 01:43:26.290 +04:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (User)
+2025-12-10 01:43:26.290 +04:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-10 01:43:26.290 +04:00 [INF] Request finished HTTP/1.1 DELETE http://localhost:5090/api/Loan/1 - 403 0 null 0.7306ms
+2025-12-10 02:19:58.414 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5090/api/User/register - application/json 167
+2025-12-10 02:19:58.414 +04:00 [INF] Executing endpoint 'LoanApi.Controllers.UserController.Register (LoanApi)'
+2025-12-10 02:19:58.423 +04:00 [INF] Route matched with {action = "Register", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(LoanApi.DTOs.UserRegisterDto) on controller LoanApi.Controllers.UserController (LoanApi).
+2025-12-10 02:19:58.471 +04:00 [INF] Executing action method LoanApi.Controllers.UserController.Register (LoanApi) - Validation state: "Valid"
+2025-12-10 02:19:58.474 +04:00 [INF] Attempting to register user: user1
+2025-12-10 02:19:58.534 +04:00 [INF] Executed DbCommand (13ms) [Parameters=[@__user_UserName_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Age], [u].[Email], [u].[FirstName], [u].[IsBlocked], [u].[LastName], [u].[MonthlyIncome], [u].[PasswordHash], [u].[Role], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[UserName] = @__user_UserName_0
+2025-12-10 02:19:58.546 +04:00 [INF] Executed DbCommand (7ms) [Parameters=[@__user_Email_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Age], [u].[Email], [u].[FirstName], [u].[IsBlocked], [u].[LastName], [u].[MonthlyIncome], [u].[PasswordHash], [u].[Role], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[Email] = @__user_Email_0
+2025-12-10 02:19:58.877 +04:00 [INF] Executed DbCommand (12ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Size = 4000), @p3='?' (DbType = Boolean), @p4='?' (Size = 4000), @p5='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p6='?' (Size = 4000), @p7='?' (DbType = Int32), @p8='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Users] ([Age], [Email], [FirstName], [IsBlocked], [LastName], [MonthlyIncome], [PasswordHash], [Role], [UserName])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2025-12-10 02:19:58.898 +04:00 [INF] User registered successfully: user1, ID: 1002
+2025-12-10 02:19:58.898 +04:00 [INF] Executed action method LoanApi.Controllers.UserController.Register (LoanApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 426.7513ms.
+2025-12-10 02:19:58.898 +04:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType0`1[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-10 02:19:58.900 +04:00 [INF] Executed action LoanApi.Controllers.UserController.Register (LoanApi) in 476.6821ms
+2025-12-10 02:19:58.900 +04:00 [INF] Executed endpoint 'LoanApi.Controllers.UserController.Register (LoanApi)'
+2025-12-10 02:19:58.900 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5090/api/User/register - 200 null application/json; charset=utf-8 485.8567ms
+2025-12-10 02:20:44.307 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5090/api/User/login - application/json 50
+2025-12-10 02:20:44.308 +04:00 [INF] Executing endpoint 'LoanApi.Controllers.UserController.Login (LoanApi)'
+2025-12-10 02:20:44.308 +04:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoanApi.DTOs.UserLoginDto) on controller LoanApi.Controllers.UserController (LoanApi).
+2025-12-10 02:20:44.309 +04:00 [INF] Executing action method LoanApi.Controllers.UserController.Login (LoanApi) - Validation state: "Valid"
+2025-12-10 02:20:44.309 +04:00 [INF] Login attempt for user: user1
+2025-12-10 02:20:44.313 +04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Age], [u].[Email], [u].[FirstName], [u].[IsBlocked], [u].[LastName], [u].[MonthlyIncome], [u].[PasswordHash], [u].[Role], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[UserName] = @__username_0
+2025-12-10 02:20:44.452 +04:00 [INF] User logged in successfully: user1, Role: "User"
+2025-12-10 02:20:44.452 +04:00 [INF] Executed action method LoanApi.Controllers.UserController.Login (LoanApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 143.2205ms.
+2025-12-10 02:20:44.452 +04:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-10 02:20:44.452 +04:00 [INF] Executed action LoanApi.Controllers.UserController.Login (LoanApi) in 144.4297ms
+2025-12-10 02:20:44.452 +04:00 [INF] Executed endpoint 'LoanApi.Controllers.UserController.Login (LoanApi)'
+2025-12-10 02:20:44.452 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5090/api/User/login - 200 null application/json; charset=utf-8 145.1601ms
+2025-12-10 02:20:59.791 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5090/api/Loan - application/json 78
+2025-12-10 02:20:59.791 +04:00 [INF] Executing endpoint 'LoanApi.Controllers.LoanController.CreateLoan (LoanApi)'
+2025-12-10 02:20:59.796 +04:00 [INF] Route matched with {action = "CreateLoan", controller = "Loan"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateLoan(LoanApi.DTOs.LoanCreateDto) on controller LoanApi.Controllers.LoanController (LoanApi).
+2025-12-10 02:20:59.809 +04:00 [INF] Executing action method LoanApi.Controllers.LoanController.CreateLoan (LoanApi) - Validation state: "Valid"
+2025-12-10 02:20:59.831 +04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Age], [u].[Email], [u].[FirstName], [u].[IsBlocked], [u].[LastName], [u].[MonthlyIncome], [u].[PasswordHash], [u].[Role], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2025-12-10 02:20:59.853 +04:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p1='?' (Size = 4000), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Loans] ([Amount], [Currency], [LoanPeriod], [LoanType], [Status], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-12-10 02:20:59.855 +04:00 [INF] Executed action method LoanApi.Controllers.LoanController.CreateLoan (LoanApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 46.4122ms.
+2025-12-10 02:20:59.856 +04:00 [INF] Executing OkObjectResult, writing value of type 'LoanApi.Models.Loan'.
+2025-12-10 02:20:59.856 +04:00 [INF] Executed action LoanApi.Controllers.LoanController.CreateLoan (LoanApi) in 60.185ms
+2025-12-10 02:20:59.856 +04:00 [INF] Executed endpoint 'LoanApi.Controllers.LoanController.CreateLoan (LoanApi)'
+2025-12-10 02:20:59.856 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5090/api/Loan - 400 null application/json 65.8044ms
+2025-12-10 02:28:34.464 +04:00 [INF] Application is shutting down...
+2025-12-10 02:30:34.583 +04:00 [INF] User profile is available. Using '/home/gkutubidze/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-12-10 02:30:34.685 +04:00 [INF] Now listening on: http://localhost:5090
+2025-12-10 02:30:34.686 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-10 02:30:34.686 +04:00 [INF] Hosting environment: Development
+2025-12-10 02:30:34.687 +04:00 [INF] Content root path: /home/gkutubidze/LoanApi/LoanApi
+2025-12-10 02:30:35.084 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/index.html - null null
+2025-12-10 02:30:35.171 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/index.html - 200 null text/html;charset=utf-8 87.6483ms
+2025-12-10 02:30:35.185 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/index.js - null null
+2025-12-10 02:30:35.187 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/index.js - 200 null application/javascript;charset=utf-8 1.5321ms
+2025-12-10 02:30:36.562 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/v1/swagger.json - null null
+2025-12-10 02:30:36.675 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 112.9739ms
+2025-12-10 02:30:51.126 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5090/api/User/login - application/json 48
+2025-12-10 02:30:51.130 +04:00 [WRN] Failed to determine the https port for redirect.
+2025-12-10 02:30:51.163 +04:00 [INF] Executing endpoint 'LoanApi.Controllers.UserController.Login (LoanApi)'
+2025-12-10 02:30:51.179 +04:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoanApi.DTOs.UserLoginDto) on controller LoanApi.Controllers.UserController (LoanApi).
+2025-12-10 02:30:51.297 +04:00 [INF] Executing action method LoanApi.Controllers.UserController.Login (LoanApi) - Validation state: "Valid"
+2025-12-10 02:30:51.301 +04:00 [INF] Login attempt for user: user1
+2025-12-10 02:30:51.752 +04:00 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'Loan'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-12-10 02:30:51.752 +04:00 [WRN] No store type was specified for the decimal property 'MonthlyIncome' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-12-10 02:30:52.355 +04:00 [INF] Executed DbCommand (39ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Age], [u].[Email], [u].[FirstName], [u].[IsBlocked], [u].[LastName], [u].[MonthlyIncome], [u].[PasswordHash], [u].[Role], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[UserName] = @__username_0
+2025-12-10 02:30:52.644 +04:00 [WRN] Login failed: Invalid password for user - user1
+2025-12-10 02:30:52.651 +04:00 [ERR] Error during login for user: user1
+System.Exception: არასწორი username ან პაროლი
+   at LoanApi.Services.UserService.LoginAsync(String username, String password) in /home/gkutubidze/LoanApi/LoanApi/Services/UserService.cs:line 79
+2025-12-10 02:30:52.667 +04:00 [INF] Executed action LoanApi.Controllers.UserController.Login (LoanApi) in 1483.8148ms
+2025-12-10 02:30:52.668 +04:00 [INF] Executed endpoint 'LoanApi.Controllers.UserController.Login (LoanApi)'
+2025-12-10 02:30:52.685 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5090/api/User/login - 400 null application/json 1558.8056ms
+2025-12-10 02:31:17.724 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5090/api/User/login - application/json 50
+2025-12-10 02:31:17.727 +04:00 [INF] Executing endpoint 'LoanApi.Controllers.UserController.Login (LoanApi)'
+2025-12-10 02:31:17.728 +04:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoanApi.DTOs.UserLoginDto) on controller LoanApi.Controllers.UserController (LoanApi).
+2025-12-10 02:31:17.732 +04:00 [INF] Executing action method LoanApi.Controllers.UserController.Login (LoanApi) - Validation state: "Valid"
+2025-12-10 02:31:17.732 +04:00 [INF] Login attempt for user: user1
+2025-12-10 02:31:17.757 +04:00 [INF] Executed DbCommand (4ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Age], [u].[Email], [u].[FirstName], [u].[IsBlocked], [u].[LastName], [u].[MonthlyIncome], [u].[PasswordHash], [u].[Role], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[UserName] = @__username_0
+2025-12-10 02:31:17.963 +04:00 [INF] User logged in successfully: user1, Role: "User"
+2025-12-10 02:31:17.982 +04:00 [INF] Executed action method LoanApi.Controllers.UserController.Login (LoanApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 246.591ms.
+2025-12-10 02:31:17.984 +04:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-10 02:31:17.988 +04:00 [INF] Executed action LoanApi.Controllers.UserController.Login (LoanApi) in 260.4951ms
+2025-12-10 02:31:17.989 +04:00 [INF] Executed endpoint 'LoanApi.Controllers.UserController.Login (LoanApi)'
+2025-12-10 02:31:17.989 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5090/api/User/login - 200 null application/json; charset=utf-8 264.3736ms
+2025-12-10 02:31:47.424 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5090/api/Loan - application/json 76
+2025-12-10 02:31:47.476 +04:00 [INF] Executing endpoint 'LoanApi.Controllers.LoanController.CreateLoan (LoanApi)'
+2025-12-10 02:31:47.481 +04:00 [INF] Route matched with {action = "CreateLoan", controller = "Loan"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateLoan(LoanApi.DTOs.LoanCreateDto) on controller LoanApi.Controllers.LoanController (LoanApi).
+2025-12-10 02:31:47.535 +04:00 [INF] Executing action method LoanApi.Controllers.LoanController.CreateLoan (LoanApi) - Validation state: "Valid"
+2025-12-10 02:31:47.622 +04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Age], [u].[Email], [u].[FirstName], [u].[IsBlocked], [u].[LastName], [u].[MonthlyIncome], [u].[PasswordHash], [u].[Role], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2025-12-10 02:31:47.776 +04:00 [INF] Executed DbCommand (11ms) [Parameters=[@p0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p1='?' (Size = 4000), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Loans] ([Amount], [Currency], [LoanPeriod], [LoanType], [Status], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-12-10 02:31:47.795 +04:00 [INF] Executed action method LoanApi.Controllers.LoanController.CreateLoan (LoanApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 260.4124ms.
+2025-12-10 02:31:47.796 +04:00 [INF] Executing OkObjectResult, writing value of type 'LoanApi.Models.Loan'.
+2025-12-10 02:31:47.822 +04:00 [INF] Executed action LoanApi.Controllers.LoanController.CreateLoan (LoanApi) in 340.6184ms
+2025-12-10 02:31:47.822 +04:00 [INF] Executed endpoint 'LoanApi.Controllers.LoanController.CreateLoan (LoanApi)'
+2025-12-10 02:31:47.823 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5090/api/Loan - 400 null application/json 398.221ms
+2025-12-10 02:32:20.831 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/api/Loan/my - null null
+2025-12-10 02:32:20.834 +04:00 [INF] Executing endpoint 'LoanApi.Controllers.LoanController.GetMyLoans (LoanApi)'
+2025-12-10 02:32:20.839 +04:00 [INF] Route matched with {action = "GetMyLoans", controller = "Loan"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMyLoans() on controller LoanApi.Controllers.LoanController (LoanApi).
+2025-12-10 02:32:20.840 +04:00 [INF] Executing action method LoanApi.Controllers.LoanController.GetMyLoans (LoanApi) - Validation state: "Valid"
+2025-12-10 02:32:20.860 +04:00 [INF] Executed DbCommand (13ms) [Parameters=[@__userId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [l].[Id], [l].[Amount], [l].[Currency], [l].[LoanPeriod], [l].[LoanType], [l].[Status], [l].[UserId]
+FROM [Loans] AS [l]
+WHERE [l].[UserId] = @__userId_0
+2025-12-10 02:32:20.862 +04:00 [INF] Executed action method LoanApi.Controllers.LoanController.GetMyLoans (LoanApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 22.3323ms.
+2025-12-10 02:32:20.862 +04:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[LoanApi.Models.Loan, LoanApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-12-10 02:32:20.865 +04:00 [INF] Executed action LoanApi.Controllers.LoanController.GetMyLoans (LoanApi) in 26.1053ms
+2025-12-10 02:32:20.865 +04:00 [INF] Executed endpoint 'LoanApi.Controllers.LoanController.GetMyLoans (LoanApi)'
+2025-12-10 02:32:20.866 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/api/Loan/my - 200 null application/json; charset=utf-8 34.1751ms
+2025-12-10 02:32:29.345 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/api/Loan/all - null null
+2025-12-10 02:32:29.348 +04:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Accountant)
+2025-12-10 02:32:29.351 +04:00 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-12-10 02:32:29.352 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/api/Loan/all - 403 0 null 6.1067ms
+2025-12-10 02:58:46.942 +04:00 [INF] Application is shutting down...
+2025-12-10 03:03:33.071 +04:00 [INF] User profile is available. Using '/home/gkutubidze/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-12-10 03:03:33.165 +04:00 [INF] Now listening on: http://localhost:5090
+2025-12-10 03:03:33.166 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-10 03:03:33.166 +04:00 [INF] Hosting environment: Development
+2025-12-10 03:03:33.166 +04:00 [INF] Content root path: /home/gkutubidze/LoanApi/LoanApi
+2025-12-10 03:03:36.929 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/index.html - null null
+2025-12-10 03:03:37.020 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/index.html - 200 null text/html;charset=utf-8 92.3134ms
+2025-12-10 03:03:37.040 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/index.js - null null
+2025-12-10 03:03:37.042 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/index.js - 200 null application/javascript;charset=utf-8 1.6319ms
+2025-12-10 03:03:38.403 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5090/swagger/v1/swagger.json - null null
+2025-12-10 03:03:38.509 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5090/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 105.9053ms
+2025-12-10 03:03:56.194 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5090/api/User/login - application/json 49
+2025-12-10 03:03:56.198 +04:00 [WRN] Failed to determine the https port for redirect.
+2025-12-10 03:03:56.231 +04:00 [INF] Executing endpoint 'LoanApi.Controllers.UserController.Login (LoanApi)'
+2025-12-10 03:03:56.247 +04:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoanApi.DTOs.UserLoginDto) on controller LoanApi.Controllers.UserController (LoanApi).
+2025-12-10 03:03:56.363 +04:00 [INF] Executing action method LoanApi.Controllers.UserController.Login (LoanApi) - Validation state: "Valid"
+2025-12-10 03:03:56.366 +04:00 [INF] Login attempt for user: user
+2025-12-10 03:03:56.818 +04:00 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'Loan'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-12-10 03:03:56.819 +04:00 [WRN] No store type was specified for the decimal property 'MonthlyIncome' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-12-10 03:03:57.422 +04:00 [INF] Executed DbCommand (54ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Age], [u].[Email], [u].[FirstName], [u].[IsBlocked], [u].[LastName], [u].[MonthlyIncome], [u].[PasswordHash], [u].[Role], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[UserName] = @__username_0
+2025-12-10 03:03:57.713 +04:00 [WRN] Login failed: Invalid password for user - user
+2025-12-10 03:03:57.713 +04:00 [ERR] Error during login for user: user
+System.Exception: არასწორი username ან პაროლი
+   at LoanApi.Services.UserService.LoginAsync(String username, String password) in /home/gkutubidze/LoanApi/LoanApi/Services/UserService.cs:line 79
+2025-12-10 03:03:57.726 +04:00 [INF] Executed action LoanApi.Controllers.UserController.Login (LoanApi) in 1475.3666ms
+2025-12-10 03:03:57.727 +04:00 [INF] Executed endpoint 'LoanApi.Controllers.UserController.Login (LoanApi)'
+2025-12-10 03:03:57.744 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5090/api/User/login - 400 null application/json 1550.0195ms
+2025-12-10 03:04:01.900 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5090/api/User/login - application/json 50
+2025-12-10 03:04:01.902 +04:00 [INF] Executing endpoint 'LoanApi.Controllers.UserController.Login (LoanApi)'
+2025-12-10 03:04:01.902 +04:00 [INF] Route matched with {action = "Login", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(LoanApi.DTOs.UserLoginDto) on controller LoanApi.Controllers.UserController (LoanApi).
+2025-12-10 03:04:01.905 +04:00 [INF] Executing action method LoanApi.Controllers.UserController.Login (LoanApi) - Validation state: "Valid"
+2025-12-10 03:04:01.905 +04:00 [INF] Login attempt for user: user1
+2025-12-10 03:04:01.940 +04:00 [INF] Executed DbCommand (3ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Age], [u].[Email], [u].[FirstName], [u].[IsBlocked], [u].[LastName], [u].[MonthlyIncome], [u].[PasswordHash], [u].[Role], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[UserName] = @__username_0
+2025-12-10 03:04:02.144 +04:00 [INF] User logged in successfully: user1, Role: "User"
+2025-12-10 03:04:02.163 +04:00 [INF] Executed action method LoanApi.Controllers.UserController.Login (LoanApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 254.3053ms.
+2025-12-10 03:04:02.166 +04:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`1[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-12-10 03:04:02.169 +04:00 [INF] Executed action LoanApi.Controllers.UserController.Login (LoanApi) in 266.8773ms
+2025-12-10 03:04:02.170 +04:00 [INF] Executed endpoint 'LoanApi.Controllers.UserController.Login (LoanApi)'
+2025-12-10 03:04:02.170 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5090/api/User/login - 200 null application/json; charset=utf-8 270.1859ms
+2025-12-10 03:05:08.057 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5090/api/Loan - application/json 78
+2025-12-10 03:05:08.102 +04:00 [INF] Executing endpoint 'LoanApi.Controllers.LoanController.CreateLoan (LoanApi)'
+2025-12-10 03:05:08.107 +04:00 [INF] Route matched with {action = "CreateLoan", controller = "Loan"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateLoan(LoanApi.DTOs.LoanCreateDto) on controller LoanApi.Controllers.LoanController (LoanApi).
+2025-12-10 03:05:08.159 +04:00 [INF] Executing action method LoanApi.Controllers.LoanController.CreateLoan (LoanApi) - Validation state: "Valid"
+2025-12-10 03:05:08.247 +04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Age], [u].[Email], [u].[FirstName], [u].[IsBlocked], [u].[LastName], [u].[MonthlyIncome], [u].[PasswordHash], [u].[Role], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2025-12-10 03:05:08.393 +04:00 [INF] Executed DbCommand (11ms) [Parameters=[@p0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p1='?' (Size = 4000), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Loans] ([Amount], [Currency], [LoanPeriod], [LoanType], [Status], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-12-10 03:05:08.413 +04:00 [INF] Executed action method LoanApi.Controllers.LoanController.CreateLoan (LoanApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 253.1744ms.
+2025-12-10 03:05:08.413 +04:00 [INF] Executing OkObjectResult, writing value of type 'LoanApi.Models.Loan'.
+2025-12-10 03:05:08.436 +04:00 [INF] Executed action LoanApi.Controllers.LoanController.CreateLoan (LoanApi) in 328.5315ms
+2025-12-10 03:05:08.436 +04:00 [INF] Executed endpoint 'LoanApi.Controllers.LoanController.CreateLoan (LoanApi)'
+2025-12-10 03:05:08.436 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5090/api/Loan - 400 null application/json 379.9527ms
+2025-12-10 03:06:55.362 +04:00 [INF] Application is shutting down...
+2025-12-10 03:07:29.456 +04:00 [INF] User profile is available. Using '/home/gkutubidze/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-12-10 03:07:29.553 +04:00 [INF] Now listening on: http://localhost:5090
+2025-12-10 03:07:29.554 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-10 03:07:29.554 +04:00 [INF] Hosting environment: Development
+2025-12-10 03:07:29.554 +04:00 [INF] Content root path: /home/gkutubidze/LoanApi/LoanApi
+2025-12-10 03:09:24.659 +04:00 [INF] Application is shutting down...
+2025-12-10 03:09:43.801 +04:00 [INF] User profile is available. Using '/home/gkutubidze/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-12-10 03:09:43.900 +04:00 [INF] Now listening on: http://localhost:5090
+2025-12-10 03:09:43.901 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-10 03:09:43.901 +04:00 [INF] Hosting environment: Development
+2025-12-10 03:09:43.901 +04:00 [INF] Content root path: /home/gkutubidze/LoanApi/LoanApi
+2025-12-10 03:09:57.214 +04:00 [INF] Application is shutting down...
+2025-12-10 03:09:59.829 +04:00 [INF] User profile is available. Using '/home/gkutubidze/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-12-10 03:09:59.922 +04:00 [INF] Now listening on: http://localhost:5090
+2025-12-10 03:09:59.923 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-10 03:09:59.924 +04:00 [INF] Hosting environment: Development
+2025-12-10 03:09:59.924 +04:00 [INF] Content root path: /home/gkutubidze/LoanApi/LoanApi
+2025-12-10 03:10:10.500 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5090/api/Loan - application/json 78
+2025-12-10 03:10:10.532 +04:00 [WRN] Failed to determine the https port for redirect.
+2025-12-10 03:10:10.601 +04:00 [INF] Executing endpoint 'LoanApi.Controllers.LoanController.CreateLoan (LoanApi)'
+2025-12-10 03:10:10.616 +04:00 [INF] Route matched with {action = "CreateLoan", controller = "Loan"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateLoan(LoanApi.DTOs.LoanCreateDto) on controller LoanApi.Controllers.LoanController (LoanApi).
+2025-12-10 03:10:10.813 +04:00 [INF] Executing action method LoanApi.Controllers.LoanController.CreateLoan (LoanApi) - Validation state: "Valid"
+2025-12-10 03:10:11.278 +04:00 [WRN] No store type was specified for the decimal property 'Amount' on entity type 'Loan'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-12-10 03:10:11.278 +04:00 [WRN] No store type was specified for the decimal property 'MonthlyIncome' on entity type 'User'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-12-10 03:10:11.939 +04:00 [INF] Executed DbCommand (40ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [u].[Id], [u].[Age], [u].[Email], [u].[FirstName], [u].[IsBlocked], [u].[LastName], [u].[MonthlyIncome], [u].[PasswordHash], [u].[Role], [u].[UserName]
+FROM [Users] AS [u]
+WHERE [u].[Id] = @__p_0
+2025-12-10 03:10:12.182 +04:00 [INF] Executed DbCommand (12ms) [Parameters=[@p0='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p1='?' (Size = 4000), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Loans] ([Amount], [Currency], [LoanPeriod], [LoanType], [Status], [UserId])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-12-10 03:10:12.206 +04:00 [INF] Executed action method LoanApi.Controllers.LoanController.CreateLoan (LoanApi), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1389.6562ms.
+2025-12-10 03:10:12.214 +04:00 [INF] Executing OkObjectResult, writing value of type 'LoanApi.Models.Loan'.
+2025-12-10 03:10:12.262 +04:00 [INF] Executed action LoanApi.Controllers.LoanController.CreateLoan (LoanApi) in 1642.023ms
+2025-12-10 03:10:12.263 +04:00 [INF] Executed endpoint 'LoanApi.Controllers.LoanController.CreateLoan (LoanApi)'
+2025-12-10 03:10:12.275 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5090/api/Loan - 200 null application/json; charset=utf-8 1776.7217ms
+2025-12-10 03:10:20.456 +04:00 [INF] Application is shutting down...

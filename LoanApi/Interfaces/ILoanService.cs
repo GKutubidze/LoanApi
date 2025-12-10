@@ -8,6 +8,6 @@ public interface ILoanService
     Task<List<Loan>> GetUserLoansAsync(int userId);
     Task<Loan> UpdateLoanAsync(int userId, int loanId, Loan updatedLoan);
     Task DeleteLoanAsync(int userId, int loanId);
-    Task<List<Loan>> GetAllLoansAsync(); // Accountant
+    Task<List<Loan>> GetAllLoansAsync();
     Task<Loan> GetLoanByIdAsync(int id);
 }

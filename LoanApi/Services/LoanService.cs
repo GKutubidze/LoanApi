@@ -19,31 +19,36 @@ public class LoanService : ILoanService
     {
         var user = await _db.Users.FindAsync(userId);
         if (user == null) throw new Exception("User not found");
-
-        if (user.IsBlocked)
-            throw new Exception("User is blocked and cannot request loans");
+        if (user.IsBlocked) throw new Exception("User is blocked and cannot request loans");
 
         loan.UserId = userId;
         loan.Status = LoanStatus.Processing;
 
-        await _db.Loans.AddAsync(loan);
+        _db.Loans.Add(loan);
         await _db.SaveChangesAsync();
         return loan;
     }
 
     public async Task<List<Loan>> GetUserLoansAsync(int userId)
     {
-        return await _db.Loans.Where(x => x.UserId == userId).ToListAsync();
+        return await _db.Loans
+            .Where(x => x.UserId == userId)
+            .ToListAsync();
     }
 
     public async Task<Loan> GetLoanByIdAsync(int id)
     {
-        return await _db.Loans.FindAsync(id);
+        var loan = await _db.Loans.FindAsync(id);
+        if (loan == null) throw new Exception("Loan not found");
+
+        return loan;
     }
 
     public async Task<List<Loan>> GetAllLoansAsync()
     {
-        return await _db.Loans.Include(x => x.User).ToListAsync();
+        return await _db.Loans
+            .Include(x => x.User)
+            .ToListAsync();
     }
 
     public async Task<Loan> UpdateLoanAsync(int userId, int loanId, Loan updatedLoan)
@@ -74,7 +79,7 @@ public class LoanService : ILoanService
             throw new Exception("Access denied");
 
         if (loan.Status != LoanStatus.Processing)
-            throw new Exception("Only loans in processing status can be deleted");
+            throw new Exception("Only processing loans can be deleted");
 
         _db.Loans.Remove(loan);
         await _db.SaveChangesAsync();

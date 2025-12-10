@@ -786,18 +786,3 @@ http://localhost:5090/swagger
 
 ---
 
-## Author
-
-გიორგი კუთუბიძე
-Free University of Tbilisi
-Introduction to Programming - Final Project
-December 2024
-
----
-
-## License
-
-Academic Project - Educational Use Only
-EOF
-
-echo "README.md ფაილი შეიქმნა!"
