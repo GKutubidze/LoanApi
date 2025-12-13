@@ -23,7 +23,6 @@ public class UserService : IUserService
         {
             Log.Information("Attempting to register user: {UserName}", user.UserName);
             
-            // შევამოწმოთ არსებობს თუ არა უკვე
             var existingUser = await _db.Users.FirstOrDefaultAsync(x => x.UserName == user.UserName);
             if (existingUser != null)
             {
@@ -65,11 +64,9 @@ public class UserService : IUserService
                 throw new Exception("არასწორი username ან პაროლი");
             }
 
-            if (user.IsBlocked)
-            {
-                Log.Warning("Login failed: User is blocked - {UserName}", username);
-                throw new Exception("თქვენი ანგარიში დაბლოკილია");
-            }
+            // --- ცვლილება: აქედან ამოღებულია IsBlocked შემოწმება ---
+            // დაბლოკილ იუზერსაც შეუძლია შესვლა
+            // -----------------------------------------------------
 
             bool valid = BCrypt.Net.BCrypt.Verify(password, user.PasswordHash);
 
