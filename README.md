@@ -1,18 +1,7 @@
-# LoanApi - სესხების მართვის სისტემა
+# LoanApi 
 
-## რა არის LoanApi?
 
-LoanApi არის .NET 10.0 ზე აგებული REST API აპლიკაცია სესხების მართვის სისტემა. სისტემაში ორი ტიპის მომხმარებელი არის: ჩვეულებრივი მომხმარებელი (User) რომელსაც შეუძლია საკუთარი სესხების მოთხოვნა და მართვა, და ბუღალტერი (Accountant) რომელსაც შეუძლია ყველა სესხის დენიშვნება, განახლება, წაშლა და მომხმარებლების დაბლოკვა.
 
----
-
-## მოთხოვნილი ტექნოლოგია
-
-- .NET 10.0 SDK
-- SQL Server 2019 ან უფრო ახალი
-- Git
-
----
 
 ## ინსტალაცია
 
@@ -139,7 +128,7 @@ LoanApi.Tests/
 
 ## API Endpoints
 
-### ავტენტიკაცია
+### ავთენტიფიკაცია
 
 #### რეგისტრაცია
 
@@ -148,11 +137,11 @@ POST /api/user/register
 Content-Type: application/json
 
 {
-  "firstName": "გიორგი",
-  "lastName": "კუთუბიძე",
-  "userName": "gkutubidze",
+  "firstName": "John",
+  "lastName": "Does",
+  "userName": "John123",
   "age": 25,
-  "email": "giorgi@example.com",
+  "email": "john@example.com",
   "monthlyIncome": 2500.00,
   "password": "securepass123"
 }
@@ -170,14 +159,14 @@ Content-Type: application/json
 - 400: Email უკვე არსებობს
 - 400: ვალიდაციის შეცდომა
 
-#### ლოგინი
+#### Login
 
 ```http
 POST /api/user/login
 Content-Type: application/json
 
 {
-  "userName": "gkutubidze",
+  "userName": "John123",
   "password": "securepass123"
 }
 ```
@@ -208,11 +197,11 @@ Authorization: Bearer {token}
 ```json
 {
   "id": 1,
-  "firstName": "გიორგი",
-  "lastName": "კუთუბიძე",
-  "userName": "gkutubidze",
+  "firstName": "john",
+  "lastName": "does",
+  "userName": "john",
   "age": 25,
-  "email": "giorgi@example.com",
+  "email": "john@example.com",
   "monthlyIncome": 2500.00,
   "isBlocked": false,
   "isAccountant": false
@@ -328,7 +317,7 @@ Authorization: Bearer {user-token}
 
 ---
 
-### სესხი - ბუღალტერი
+### Loan
 
 #### ყველა სესხის ნახვა
 
@@ -365,7 +354,7 @@ Authorization: Bearer {accountant-token}
 
 ---
 
-## ავტენტიკაცია და დავალების მართვა
+## ავთენტიფიკაცია და დავალების მართვა
 
 ### JWT Token
 
@@ -547,8 +536,3 @@ Log დონეები: Information, Warning, Error
 
 ---
 
-## რესურსები
-
-- GitHub: https://github.com/GKutubidze/LoanApi
-- .NET Documentation: https://docs.microsoft.com/en-us/dotnet/
-- Entity Framework: https://docs.microsoft.com/en-us/ef/
