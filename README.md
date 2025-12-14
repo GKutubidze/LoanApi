@@ -1,75 +1,31 @@
-# LoanApi დოკუმენტაცია
+# LoanApi - სესხების მართვის სისტემა
 
-## შინაარსი
+## რა არის LoanApi?
 
-1. [პროექტის აღწერა](#პროექტის-აღწერა)
-2. [ტექნოლოგიები](#ტექნოლოგიები)
-3. [Setup ინსტრუქციები](#setup-ინსტრუქციები)
-4. [არქიტექტურა](#არქიტექტურა)
-5. [API Endpoints](#api-endpoints)
-6. [Request/Response მაგალითები](#requestresponse-მაგალითები)
-7. [მართვის წესები](#მართვის-წესები)
-8. [უსაფრთხოება](#უსაფრთხოება)
-9. [ტესტები](#ტესტები)
+LoanApi არის .NET 10.0 ზე აგებული REST API აპლიკაცია სესხების მართვის სისტემა. სისტემაში ორი ტიპის მომხმარებელი არის: ჩვეულებრივი მომხმარებელი (User) რომელსაც შეუძლია საკუთარი სესხების მოთხოვნა და მართვა, და ბუღალტერი (Accountant) რომელსაც შეუძლია ყველა სესხის დენიშვნება, განახლება, წაშლა და მომხმარებლების დაბლოკვა.
 
 ---
 
-## პროექტის აღწერა
+## მოთხოვნილი ტექნოლოგია
 
-LoanApi არის სესხების მართვის სისტემა .NET 10.0-ზე. სისტემა აქვს ორი ძირითადი მომხმარებელი:
-
-მომხმარებლები - მათ შეუძლიათ რეგისტრაცია, ავტორიზაცია და საკუთარი სესხების მართვა.
-
-ბუღალტრები - მათ შეუძლიათ ყველა სესხის ნახვა, მართვა და მომხმარებლების დაბლოკვა.
-
-ძირითადი ფუნქციები:
-
-- JWT-based ავტენტიკაცია
-- Role-based კონტროლი (User, Accountant)
-- სესხის სრული CRUD ოპერაციები
-- მომხმარებლების დაბლოკვა/განბლოკვა
-- ყველა შეყვანილი მონაცემის ვალიდაცია
-- სტრუქტურირებული ლოგირება
-- აპლიკაციის უნივერსალური შეცდომების დამუშავება
-- ვიზუალური API დოკუმენტაცია Swagger-ის საშუალებით
-
----
-
-## ტექნოლოგიები
-
-| ტექნოლოგია | ვერსია | გამოყენება |
-|---|---|---|
-| .NET | 10.0 | ძირითადი ფრეიმვორკი |
-| Entity Framework Core | 9.0 | მონაცემთა წვდომა |
-| SQL Server | 2019+ | მონაცემთა საცავი |
-| JWT Bearer | 9.0 | ავტენტიკაცია |
-| BCrypt.Net | 4.0.3 | პაროლის დაშიფვრა |
-| Serilog | 8.0.3 | ლოგირება |
-| FluentValidation | 11.11.0 | მონაცემთა შემოწმება |
-| xUnit | 2.9.3 | ტესტირება |
-| Swagger | 7.2.0 | დოკუმენტაცია |
-
----
-
-## Setup ინსტრუქციები
-
-### მოთხოვნილი პროგრამები
-
-დაიყენეთ შემდეგი:
-- .NET 10 SDK
+- .NET 10.0 SDK
 - SQL Server 2019 ან უფრო ახალი
 - Git
 
-### რეპოზიტორიის დაკლონვა
+---
+
+## ინსტალაცია
+
+### 1. რეპოზიტორიის დაკლონვა
 
 ```bash
-git clone git@github.com:GKutubidze/LoanApi.git
+git clone https://github.com/GKutubidze/LoanApi.git
 cd LoanApi
 ```
 
-### მონაცემთა ბაზის კონფიგურაცია
+### 2. appsettings.json კონფიგურაცია
 
-შექმენით ან განაახლეთ ფაილი `LoanApi/appsettings.json`:
+`LoanApi` ფოლდერში შექმენით ან განაახლეთ `appsettings.json`:
 
 ```json
 {
@@ -80,91 +36,104 @@ cd LoanApi
     "Key": "YourSuperSecretKeyThatIsAtLeast32CharactersLongForSecurity!",
     "Issuer": "LoanApi",
     "Audience": "LoanApiUsers"
-  },
-  "Serilog": {
-    "MinimumLevel": {
-      "Default": "Information",
-      "Override": {
-        "Microsoft": "Warning",
-        "System": "Warning"
-      }
-    }
   }
 }
 ```
 
-მნიშვნელოვანი ინფორმაცია:
+**მნიშვნელოვანი**: JwtSettings:Key უნდა იყოს მინიმუმ 32 სიმბოლო.
 
-`Server=.` აღნიშნავს ადგილობრივ SQL Server-ს. თუ სხვა სერვერი გაქვთ, შეცვალეთ connection string. `JwtSettings:Key` უნდა იყოს მინიმუმ 32 სიმბოლო.
-
-### მიგრაცია
+### 3. მონაცემთა ბაზის შექმნა
 
 ```bash
 cd LoanApi
 dotnet ef database update
 ```
 
-### აპლიკაციის გაშვება
+ეს ბრძანება SQL Server-ზე LoanDb მონაცემთა ბაზას შექმნის და მიგრაციებს გამოიყენებს.
+
+### 4. აპლიკაციის გაშვება
 
 ```bash
-dotnet build
 dotnet run
 ```
 
-აპლიკაციის მისამართები:
-- API: http://localhost:5090
-- Swagger: http://localhost:5090/swagger
+აპლიკაცია ხელმისაწვდომი იქნება შემდეგ მისამართებზე:
+- API: `http://localhost:5090`
+- Swagger დოკუმენტაცია: `http://localhost:5090/swagger`
 
 ---
 
-## არქიტექტურა
-
-### ფაილების სტრუქტურა
+## პროექტის სტრუქტურა
 
 ```
 LoanApi/
-├── Controllers/              
+├── Controllers/
 │   ├── UserController.cs
 │   └── LoanController.cs
-├── Services/                 
+├── Services/
 │   ├── UserService.cs
 │   ├── LoanService.cs
 │   └── JwtService.cs
-├── Interfaces/               
+├── Interfaces/
 │   ├── IUserService.cs
 │   ├── ILoanService.cs
 │   └── IJwtService.cs
-├── Models/                   
+├── Models/
 │   ├── User.cs
 │   ├── Loan.cs
 │   └── DTOs/
-├── Data/                     
+├── Data/
 │   ├── LoanDbContext.cs
 │   └── Migrations/
-├── Validators/               
-├── Middleware/               
-├── Enums/                    
+├── Validators/
+│   ├── UserRegisterDtoValidator.cs
+│   ├── LoanCreateDtoValidator.cs
+│   └── LoanUpdateDtoValidator.cs
+├── Enums/
+│   ├── UserRole.cs
+│   ├── LoanStatus.cs
+│   └── LoanType.cs
+├── Middleware/
+│   └── ExceptionMiddleware.cs
+├── appsettings.json
 └── Program.cs
 
-LoanApi.Tests/                
+LoanApi.Tests/
 ├── Services/
 │   ├── UserServiceTests.cs
 │   └── LoanServiceTests.cs
+└── LoanApi.Tests.csproj
 ```
 
-### დიზაინ პრინციპები
+---
 
-SOLID პრინციპები გამოყენებულია აბსტრაქციის რწყობილობისთვის:
+## მოდელები
 
-Single Responsibility - ყველა კლასი ერთი რამის ზე პასუხისმგებელია.
+### User
 
-Open/Closed - კლასები ღიაა გაფართოებისთვის, დახურულია შეცვლისთვის.
+მომხმარებელი ინფორმაცია:
 
-Liskov Substitution - ინტერფეისის განხორციელება შესაბამისი და ჩანაცვლებადია.
+- **Id**: უნიკალური იდენტიფიკატორი
+- **FirstName, LastName**: პირადი ინფორმაცია
+- **UserName**: მიმოწოდება (უნიკალური)
+- **Email**: ელფოსტა (უნიკალური)
+- **Age**: ასაკი
+- **MonthlyIncome**: ყოველთვიური შემოსავალი
+- **IsBlocked**: დაბლოკილია თუ არა
+- **PasswordHash**: დაშიფრული პაროლი
+- **Role**: UserRole.User ან UserRole.Accountant
 
-Interface Segregation - ინტერფეისები პატარა და კონკრეტული.
+### Loan
 
-Dependency Inversion - კლასები დამოკიდებულია აბსტრაქციაზე, არა კონკრეტებზე.
+სესხი ინფორმაცია:
+
+- **Id**: უნიკალური იდენტიფიკატორი
+- **UserId**: რომელი მომხმარებელის სესხი
+- **LoanType**: სესხის ტიპი (FastLoan=0, AutoLoan=1, Installment=2)
+- **Amount**: რაოდენობა
+- **Currency**: валютა (GEL, USD, EUR)
+- **LoanPeriod**: თვეების რაოდენობა
+- **Status**: LoanStatus.Processing(0), Approved(1), Rejected(2)
 
 ---
 
@@ -172,63 +141,8 @@ Dependency Inversion - კლასები დამოკიდებულ�
 
 ### ავტენტიკაცია
 
-POST /api/user/register
+#### რეგისტრაცია
 
-მომხმარებლის რეგისტრაცია. ავტორიზაცია არ სჭირდება. იქმნება ახალი მომხმარებელი, პაროლი დაშიფრული ხდება BCrypt-ით. ნაგულისხმები როლი არის User.
-
-POST /api/user/login
-
-ავტორიზაცია. ავტორიზაცია არ სჭირდება. მოწმდება ხელმოწერა და დაბრუნდება JWT Token. Token-ის ვადა 3 საათი.
-
-### მომხმარებელი
-
-GET /api/user/{id}
-
-მომხმარებლის ინფორმაციის მიღება. საჭირო Bearer Token (User ან Accountant). დაბრუნდება მომხმარებლის დეტალები ID-ის მიხედვით.
-
-PATCH /api/user/accountant/{id}/block
-
-მომხმარებლის დაბლოკვა ან განბლოკვა. საჭირო Bearer Token, მხოლოდ Accountant. ბლოკავს ან განბლოკავს მომხმარებელს.
-
-### სესხი - მომხმარებელი
-
-POST /api/loan/user
-
-სესხის მოთხოვნა. საჭირო Bearer Token, მხოლოდ User. იქმნება ახალი სესხი. ნაგულისხმები სტატუსი Processing. შემოწმდება თუ მომხმარებელი დაბლოკილია.
-
-GET /api/loan/user/my
-
-საკუთარი სესხების ნახვა. საჭირო Bearer Token, მხოლოდ User. დაბრუნდება მხოლოდ ამ მომხმარებლის სესხები.
-
-PUT /api/loan/user/{id}
-
-სესხის განახლება. საჭირო Bearer Token, მხოლოდ User. განახლდება საკუთარი სესხი. შესაძლებელი მხოლოდ Processing სტატუსით.
-
-DELETE /api/loan/user/{id}
-
-სესხის წაშლა. საჭირო Bearer Token, მხოლოდ User. წაიშლება საკუთარი სესხი. შესაძლებელი მხოლოდ Processing სტატუსით.
-
-### სესხი - ბუღალტერი
-
-GET /api/loan/accountant/all
-
-ყველა სესხის ნახვა. საჭირო Bearer Token, მხოლოდ Accountant. დაბრუნდება ყველა სესხი ყველა მომხმარებლისგან.
-
-PUT /api/loan/accountant/{id}
-
-ნებისმიერი სესხის განახლება. საჭირო Bearer Token, მხოლოდ Accountant. განახლდება ნებისმიერი სესხი, ნებისმიერი სტატუსით.
-
-DELETE /api/loan/accountant/{id}
-
-ნებისმიერი სესხის წაშლა. საჭირო Bearer Token, მხოლოდ Accountant. წაიშლება ნებისმიერი სესხი.
-
----
-
-## Request/Response მაგალითები
-
-### რეგისტრაცია
-
-Request:
 ```http
 POST /api/user/register
 Content-Type: application/json
@@ -244,32 +158,20 @@ Content-Type: application/json
 }
 ```
 
-Response (200 OK):
+**პასუხი**: 200 OK
 ```json
 {
   "message": "User registered successfully"
 }
 ```
 
-ვალიდაციის წესები:
+**შეცდომები**:
+- 400: Username უკვე არსებობს
+- 400: Email უკვე არსებობს
+- 400: ვალიდაციის შეცდომა
 
-firstName - სავალდებულო, მაქსიმუმ 50 სიმბოლო.
-lastName - სავალდებულო, მაქსიმუმ 50 სიმბოლო.
-userName - სავალდებულო, მაქსიმუმ 50 სიმბოლო, უნიკალური.
-email - სწორი ელფოსტის ფორმატი, უნიკალური.
-age - მინიმუმ 18 წელი.
-monthlyIncome - მეტი ვიდრე 0.
-password - მინიმუმ 6 სიმბოლო.
+#### ლოგინი
 
-შესაძლო შეცდომები:
-
-400 - Username უკვე არსებობს.
-400 - Email უკვე არსებობს.
-400 - ვალიდაციის შეცდომები.
-
-### ავტორიზაცია
-
-Request:
 ```http
 POST /api/user/login
 Content-Type: application/json
@@ -280,35 +182,71 @@ Content-Type: application/json
 }
 ```
 
-Response (200 OK):
+**პასუხი**: 200 OK
 ```json
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
 ```
 
-JWT Token შემადგენლობა:
+**შეცდომები**:
+- 400: არასწორი username ან პაროლი
+- 400: ანგარიში დაბლოკილია
 
-NameIdentifier - მომხმარებლის ID.
-Name - მომხმარებლის სახელი.
-Role - User ან Accountant.
+---
 
-Token გამოყენება:
+### მომხმარებელი
+
+#### მომხმარებელი ინფორმაცია
+
 ```http
+GET /api/user/{id}
 Authorization: Bearer {token}
 ```
 
-შესაძლო შეცდომები:
+**პასუხი**: 200 OK
+```json
+{
+  "id": 1,
+  "firstName": "გიორგი",
+  "lastName": "კუთუბიძე",
+  "userName": "gkutubidze",
+  "age": 25,
+  "email": "giorgi@example.com",
+  "monthlyIncome": 2500.00,
+  "isBlocked": false,
+  "isAccountant": false
+}
+```
 
-400 - არასწორი username ან პაროლი.
-400 - ანგარიში დაბლოკილია.
+#### მომხმარებელი დაბლოკვა (Accountant)
 
-### სესხის მოთხოვნა
+```http
+PATCH /api/user/accountant/{id}/block
+Authorization: Bearer {accountant-token}
+Content-Type: application/json
 
-Request:
+{
+  "isBlocked": true
+}
+```
+
+**პასუხი**: 200 OK
+```json
+{
+  "message": "User blocked successfully"
+}
+```
+
+---
+
+### სესხი - მომხმარებელი
+
+#### ახალი სესხის მოთხოვნა
+
 ```http
 POST /api/loan/user
-Authorization: Bearer {token}
+Authorization: Bearer {user-token}
 Content-Type: application/json
 
 {
@@ -319,13 +257,7 @@ Content-Type: application/json
 }
 ```
 
-LoanType მნიშვნელობები:
-
-0 - FastLoan (სწრაფი სესხი).
-1 - AutoLoan (ავტო სესხი).
-2 - Installment (განვადება).
-
-Response (200 OK):
+**პასუხი**: 200 OK
 ```json
 {
   "id": 1,
@@ -338,21 +270,19 @@ Response (200 OK):
 }
 ```
 
-შესაძლო შეცდომები:
+**შეცდომები**:
+- 401: Unauthorized (token აკლია)
+- 400: მომხმარებელი დაბლოკილია
+- 400: ვალიდაციის შეცდომა
 
-401 - Unauthorized.
-400 - მომხმარებელი დაბლოკილია.
-400 - ვალიდაციის შეცდომები.
+#### საკუთარი სესხების ნახვა
 
-### ჩემი სესხები
-
-Request:
 ```http
 GET /api/loan/user/my
-Authorization: Bearer {token}
+Authorization: Bearer {user-token}
 ```
 
-Response (200 OK):
+**პასუხი**: 200 OK
 ```json
 [
   {
@@ -367,12 +297,11 @@ Response (200 OK):
 ]
 ```
 
-### სესხის განახლება (მომხმარებელი)
+#### სესხის განახლება
 
-Request:
 ```http
-PUT /api/loan/user/1
-Authorization: Bearer {token}
+PUT /api/loan/user/{id}
+Authorization: Bearer {user-token}
 Content-Type: application/json
 
 {
@@ -383,76 +312,37 @@ Content-Type: application/json
 }
 ```
 
-Response (200 OK):
-```json
-{
-  "id": 1,
-  "userId": 1,
-  "loanType": 0,
-  "amount": 7000.00,
-  "currency": "USD",
-  "loanPeriod": 24,
-  "status": 0
-}
-```
+**პირობები**:
+- სესხის Status უნდა იყოს Processing
+- სესხი ეკუთვნის ამ მომხმარებელს
 
-შესაძლო შეცდომები:
+#### სესხის წაშლა
 
-403 - წვდომა უარყოფილია.
-400 - მხოლოდ Processing სტატუსის სესხი შეიძლება განახლდეს.
-
-### სესხის წაშლა (მომხმარებელი)
-
-Request:
 ```http
-DELETE /api/loan/user/1
-Authorization: Bearer {token}
+DELETE /api/loan/user/{id}
+Authorization: Bearer {user-token}
 ```
 
-Response (200 OK):
-```json
-"Loan deleted"
-```
+**პირობები**:
+- სესხის Status უნდა იყოს Processing
 
-შესაძლო შეცდომები:
+---
 
-403 - წვდომა უარყოფილია.
-400 - მხოლოდ Processing სტატუსის სესხი შეიძლება წაიშალოს.
-404 - სესხი ვერ მოიძებნა.
+### სესხი - ბუღალტერი
 
-### ყველა სესხი (Accountant)
+#### ყველა სესხის ნახვა
 
-Request:
 ```http
 GET /api/loan/accountant/all
 Authorization: Bearer {accountant-token}
 ```
 
-Response (200 OK):
-```json
-[
-  {
-    "id": 1,
-    "userId": 1,
-    "user": {
-      "id": 1,
-      "firstName": "გიორგი",
-      "userName": "gkutubidze"
-    },
-    "loanType": 0,
-    "amount": 5000.00,
-    "currency": "GEL",
-    "loanPeriod": 12,
-    "status": 0
-  }
-]
-```
+**პასუხი**: 200 OK - ყველა სესხი
 
-### სესხის განახლება (Accountant)
+#### სესხის განახლება (ნებისმიერი სტატუსი)
 
-Request:
 ```http
-PUT /api/loan/accountant/1
+PUT /api/loan/accountant/{id}
 Authorization: Bearer {accountant-token}
 Content-Type: application/json
 
@@ -464,314 +354,201 @@ Content-Type: application/json
 }
 ```
 
-Response (200 OK):
-```json
-{
-  "id": 1,
-  "userId": 1,
-  "loanType": 0,
-  "amount": 8000.00,
-  "currency": "EUR",
-  "loanPeriod": 36,
-  "status": 0
-}
-```
+**უპირატესობა**: ნებისმიერი სტატუსის სესხი განახლდება
 
-### მომხმარებლის დაბლოკვა (Accountant)
+#### სესხის წაშლა
 
-Request:
 ```http
-PATCH /api/user/accountant/1/block
+DELETE /api/loan/accountant/{id}
 Authorization: Bearer {accountant-token}
-Content-Type: application/json
-
-{
-  "isBlocked": true
-}
-```
-
-Response (200 OK):
-```json
-{
-  "message": "User blocked successfully"
-}
 ```
 
 ---
 
-## მართვის წესები
+## ავტენტიკაცია და დავალების მართვა
 
-### მომხმარებელი
-
-მომხმარებელს შეუძლია:
-
-მხოლოდ საკუთარი სესხების ნახვა და მართვა.
-Processing სტატუსის სესხის განახლება.
-Processing სტატუსის სესხის წაშლა.
-თავის მონაცემების ნახვა.
-
-მომხმარებელს არ შეუძლია:
-
-სესხის სტატუსის შეცვლა.
-სხვა მომხმარებლის სესხების ნახვა.
-სხვა მომხმარებლის მონაცემების შეცვლა.
-მომხმარებელი რომელიც დაბლოკილია, სესხის მოთხოვნა ვერ გააკეთებს.
-
-### ბუღალტერი
-
-ბუღალტერს შეუძლია:
-
-ყველა სესხის ნახვა.
-ნებისმიერი სესხის განახლება ნებისმიერი სტატუსით.
-ნებისმიერი სესხის წაშლა.
-ნებისმიერი სესხის სტატუსის შეცვლა.
-მომხმარებელის დაბლოკვა ან განბლოკვა.
-
-### სესხის სტატუსები
-
-Processing (0) - სესხი დამუშავების პროცესში.
-Approved (1) - სესხი დამტკიცებული.
-Rejected (2) - სესხი უარყოფილი.
-
----
-
-## უსაფრთხოება
-
-### პაროლის დაშიფვრა
-
-პაროლები ინახება BCrypt hash-ის ფორმატში:
-
-რეგისტრაციის დროს:
-```
-user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(password)
-```
-
-ლოგინის დროს:
-```
-bool valid = BCrypt.Net.BCrypt.Verify(password, user.PasswordHash)
-```
-
-BCrypt-ის უპირატესობები:
-
-MD5 და SHA256 უსაფრთხო არ არის brute-force თავდასხმის წინააღმდეგ.
-BCrypt იყენებს salt-ს და hashing-ს.
-BCrypt განზომილებით ნელი არის, რაც brute-force-ს გრძელვადიან ხდის.
-ეს ინდუსტრიის სტანდარტი.
-
-### JWT ავტენტიკაცია
+### JWT Token
 
 Token შედგება:
+- **NameIdentifier**: მომხმარებელი ID
+- **Name**: მომხმარებელი სახელი
+- **Role**: User ან Accountant
+- **Expiry**: 3 საათი
 
-NameIdentifier - მომხმარებლის ID.
-Name - მომხმარებლის სახელი.
-Role - User ან Accountant.
-Expiry - 3 საათი.
-
-### როლი-ორიენტირებული წვდომა
-
-```csharp
-[Authorize(Roles = "User")]        // მხოლოდ User-ებისთვის
-[Authorize(Roles = "Accountant")]  // მხოლოდ Accountant-ებისთვის
-[Authorize]                        // ნებისმიერი ავტორიზებული მომხმარებელი
+Token გამოყენება:
+```http
+Authorization: Bearer {token}
 ```
+
+### Role-ორიენტირებული წვდომა
+
+- `[Authorize]` - ნებისმიერი ავტორიზებული
+- `[Authorize(Roles = "User")]` - მხოლოდ User
+- `[Authorize(Roles = "Accountant")]` - მხოლოდ Accountant
+
+---
+
+## სესხის მართვის წესები
+
+### მომხმარებელი შეუძლია:
+
+1. მხოლოდ საკუთარი სესხების ნახვა
+2. Processing სტატუსის სესხის განახლება (Amount, Currency, LoanPeriod)
+3. Processing სტატუსის სესხის წაშლა
+4. თავის მონაცემების ნახვა
+
+### მომხმარებელი არ შეუძლია:
+
+1. სხვა მომხმარებლის სესხის ნახვა
+2. სესხის Status შეცვლა
+3. სესხის მოთხოვნა თუ დაბლოკილია
+
+### ბუღალტერი შეუძლია:
+
+1. ყველა სესხის ნახვა
+2. ნებისმიერი სესხის განახლება ნებისმიერი სტატუსით
+3. ნებისმიერი სესხის წაშლა
+4. მომხმარებელი დაბლოკვა/განბლოკვა
+
+---
+
+## შეყვანილი მონაცემის შემოწმება
+
+### რეგისტრაციაზე
+
+- **FirstName**: სავალდებულო, მაქსიმუმ 50 სიმბოლო
+- **LastName**: სავალდებულო, მაქსიმუმ 50 სიმბოლო
+- **UserName**: სავალდებულო, მაქსიმუმ 50 სიმბოლო, უნიკალური
+- **Email**: სწორი ელფოსტის ფორმატი, უნიკალური
+- **Age**: მინიმუმ 18 წელი
+- **MonthlyIncome**: მეტი ვიდრე 0
+- **Password**: მინიმუმ 6 სიმბოლო
+
+### სესხის შექმნაზე
+
+- **Amount**: მეტი ვიდრე 0
+- **Currency**: 3 ასოიანი ISO კოდი (GEL, USD, EUR)
+- **LoanPeriod**: მეტი ვიდრე 0 (თვეების რაოდენობა)
+- **LoanType**: სწორი enum (FastLoan, AutoLoan, Installment)
+
+---
+
+## დაშიფვრა და უსაფრთხოება
+
+### პაროლი
+
+პაროლები დაშიფრულია BCrypt ალგორითმით:
+
+**რეგისტრაცია**: `PasswordHash = BCrypt.HashPassword(password)`
+
+**ლოგინი**: `BCrypt.Verify(password, PasswordHash)`
+
+BCrypt უპირატესობები:
+- Salt-სთან ერთად ჰეშირება
+- Brute-force თავდასხმის წინააღმდეგ დაცული
+- ინდუსტრიის სტანდარტი
 
 ---
 
 ## ტესტები
 
-### ტესტების გაშვება
+### გაშვება
 
 ```bash
 cd LoanApi.Tests
 dotnet test
 ```
 
-### ტესტების ორგანიზაცია
+### ტესტის დაფა
 
-LoanApi.Tests/Services/UserServiceTests.cs - 8 ტესტი.
-LoanApi.Tests/Services/LoanServiceTests.cs - 10 ტესტი.
+**UserServiceTests** (8 ტესტი):
+- RegisterAsync სწორი მონაცემით ✓
+- RegisterAsync დუბლიკატი username ✓
+- LoginAsync სწორი ხელმოწერა ✓
+- LoginAsync არასწორი პაროლი ✓
+- LoginAsync დაბლოკილი user ✓
+- GetByIdAsync user დაბრუნება ✓
+- BlockUserAsync დაბლოკვა ✓
+- BlockUserAsync user ვერ ნაპოვნი ✓
 
-### UserServiceTests
-
-RegisterAsync_ValidUser_CreatesUser - სწორი მონაცემით რეგისტრაცია.
-RegisterAsync_DuplicateUsername_ThrowsException - დუბლიკატი სახელით შეცდომა.
-LoginAsync_ValidCredentials_ReturnsToken - სწორი ხელმოწერით token.
-LoginAsync_WrongPassword_ThrowsException - არასწორი პაროლით შეცდომა.
-LoginAsync_BlockedUser_ThrowsException - დაბლოკილი მომხმარებელი შეცდომა.
-GetByIdAsync_ExistingUser_ReturnsUser - მომხმარებელის ნახვა.
-BlockUserAsync_UpdatesIsBlockedStatus - მომხმარებელი დაბლოკა.
-BlockUserAsync_UserNotFound_ThrowsException - ვერ ნაპოვნი მომხმარებელი შეცდომა.
-
-### LoanServiceTests
-
-CreateLoanAsync_ValidUser_CreatesLoan - სესხის შექმნა.
-CreateLoanAsync_UserNotFound_ThrowsException - ვერ ნაპოვნი მომხმარებელი.
-CreateLoanAsync_BlockedUser_ThrowsException - დაბლოკილი მომხმარებელი.
-GetUserLoansAsync_ReturnsOnlyUserLoans - მხოლოდ საკუთარი სესხები.
-UpdateLoanAsync_ValidLoan_UpdatesLoan - სესხის განახლება.
-UpdateLoanAsync_WrongUser_ThrowsException - არასწორი მომხმარებელი.
-UpdateLoanAsync_WrongStatus_ThrowsException - არასწორი სტატუსი.
-DeleteLoanAsync_ValidLoan_DeletesLoan - სესხის წაშლა.
-DeleteLoanAsync_WrongStatus_ThrowsException - არასწორი სტატუსი წაშლისას.
-GetAllLoansAsync_ReturnsAllLoans - ყველა სესხი.
+**LoanServiceTests** (10 ტესტი):
+- CreateLoanAsync სესხი შედგება ✓
+- CreateLoanAsync user ვერ ნაპოვნი ✓
+- CreateLoanAsync დაბლოკილი user ✓
+- GetUserLoansAsync user-ის სესხები ✓
+- UpdateLoanAsync განახლება ✓
+- UpdateLoanAsync არასწორი user ✓
+- UpdateLoanAsync არასწორი სტატუსი ✓
+- DeleteLoanAsync წაშლება ✓
+- DeleteLoanAsync არასწორი სტატუსი ✓
+- GetAllLoansAsync ყველა სესხი ✓
 
 ---
 
-## მონაცემთა ბაზის სქემა
+## მნიშვნელოვანი კლასები და მათი მოვალეობა
 
-### Users ცხრილი
+### Services
 
-```sql
-CREATE TABLE Users (
-    Id INT PRIMARY KEY IDENTITY(1,1),
-    FirstName NVARCHAR(MAX) NOT NULL,
-    LastName NVARCHAR(MAX) NOT NULL,
-    UserName NVARCHAR(MAX) NOT NULL,
-    Age INT NOT NULL,
-    Email NVARCHAR(MAX) NOT NULL,
-    MonthlyIncome DECIMAL(18,2) NOT NULL,
-    IsBlocked BIT DEFAULT 0,
-    PasswordHash NVARCHAR(MAX) NOT NULL,
-    Role INT DEFAULT 0
-);
-```
+**UserService**: რეგისტრაცია, ლოგინი, მომხმარებელი მოძებნა, დაბლოკვა
 
-### Loans ცხრილი
+**LoanService**: სესხის CRUD ოპერაციები, სტატუსის შემოწმება
 
-```sql
-CREATE TABLE Loans (
-    Id INT PRIMARY KEY IDENTITY(1,1),
-    UserId INT NOT NULL,
-    LoanType INT NOT NULL,
-    Amount DECIMAL(18,2) NOT NULL,
-    Currency NVARCHAR(MAX) NOT NULL,
-    LoanPeriod INT NOT NULL,
-    Status INT DEFAULT 0,
-    FOREIGN KEY (UserId) REFERENCES Users(Id) ON DELETE CASCADE
-);
-```
+**JwtService**: Token გენერირება
 
-### ურთიერთობა
+### Controllers
 
-User-სა და Loan-ს შორის არის One-to-Many ურთიერთობა. User-ის წაშლისას წაიშლება მისი ყველა სესხი (Cascade Delete).
+**UserController**: /api/user/* ენდპოინტები
 
----
+**LoanController**: /api/loan/* ენდპოინტები
 
-## შეყვანილი მონაცემის შემოწმება
+### Data
 
-### UserRegisterDto
+**LoanDbContext**: Entity Framework კონტექსტი, Users და Loans ცხრილი
 
-firstName - სავალდებულო, მაქსიმუმ 50 სიმბოლო.
-lastName - სავალდებულო, მაქსიმუმ 50 სიმბოლო.
-userName - სავალდებულო, მაქსიმუმ 50 სიმბოლო.
-email - სწორი ელფოსტის ფორმატი.
-age - მინიმუმ 18.
-monthlyIncome - მეტი ვიდრე 0.
-password - მინიმუმ 6 სიმბოლო.
+### Validators
 
-### LoanCreateDto
+**FluentValidation**: შეყვანილი მონაცემის შემოწმება
 
-amount - მეტი ვიდრე 0.
-currency - სავალდებულო, მაქსიმუმ 10 სიმბოლო.
-loanPeriod - მეტი ვიდრე 0.
-loanType - სწორი enum მნიშვნელობა.
+### Middleware
 
-### შეცდომის პასუხი
-
-```json
-{
-  "errors": {
-    "UserName": ["Username is required"],
-    "Email": ["Invalid email format"]
-  }
-}
-```
+**ExceptionMiddleware**: გლობალური შეცდომების დამუშავება
 
 ---
 
 ## HTTP სტატუსის კოდები
 
-200 - OK - წარმატებული მოთხოვნა.
-400 - Bad Request - შეყვანილი მონაცემის შეცდომა ან სიტუაციის პრობლემა.
-401 - Unauthorized - Token აკლია ან არასწორია.
-403 - Forbidden - Token OK-ია, მაგრამ წვდომა აკრძალული.
-404 - Not Found - რესურსი ვერ მოიძებნა.
+- **200 OK**: წარმატებული მოთხოვნა
+- **400 Bad Request**: შეყვანილი მონაცემის ან ბიზნეს ლოგიკის შეცდომა
+- **401 Unauthorized**: Token აკლია ან არასწორია
+- **403 Forbidden**: Token OK, მაგრამ წვდომა აკრძალული
+- **404 Not Found**: რესურსი ვერ მოიძებნა
 
 ---
 
 ## Swagger გამოყენება
 
-### ნაბიჯი 1: აპლიკაციის გაშვება
-
-```bash
-cd LoanApi
-dotnet run
-```
-
-### ნაბიჯი 2: Swagger-ის გახსნა
-
-მოიხსენით ბრაუზერი და წადით http://localhost:5090/swagger
-
-### ნაბიჯი 3: ავტორიზაცია
-
-დააჭირეთ Authorize ღილაკს (ზე მარჯვნივ).
-
-### ნაბიჯი 4: Token-ის მიღება
-
-აირჩიეთ POST /api/user/login.
-დააჭირეთ "Try it out".
-შეიყვანეთ username და password.
-დააჭირეთ Execute.
-დააკოპირეთ მიღებული token.
-
-### ნაბიჯი 5: Token-ის გამოყენება
-
-დააჭირეთ Authorize ღილაკს ისევ.
-Authorize ველში შეიყვანეთ: Bearer {token}
-დააჭირეთ Authorize.
-
-### ნაბიჯი 6: ენდპოინტების ტესტირება
-
-ახლა შეგიძლიათ სხვა ენდპოინტებს სცადოთ.
+1. აპლიკაცია გაშვება: `dotnet run`
+2. ბრაუზერი: `http://localhost:5090/swagger`
+3. Authorize ღილაკი (ზე მარჯვნივ)
+4. /api/user/login რეკვეზიტი, token მიღება
+5. Authorize: `Bearer {token}`
+6. სხვა ენდპოინტები ტესტირება
 
 ---
 
 ## ლოგირება
 
-### Serilog კონფიგურაცია
+Serilog კამერა აკუმულირებს ლოგებს:
 
-Console Sink - ლოგები Console-ში.
-File Sink - ლოგები Logs/log-YYYYMMDD.txt ფაილებში.
-Rolling Interval - ყოველ დღეს ახალი ფაილი.
+- **Console**: რეალ-დროში ხედვა
+- **File**: `Logs/log-YYYYMMDD.txt` (ყოველ დღეს ახალი)
 
-### Log დონეები
-
-```
-Information - რეგულარული ინფორმაცია
-Warning - გაფრთხოების შეტყობინებები
-Error - შეცდომები
-```
-
-### ლოგის მაგალითი
-
-```
-2025-12-10 16:53:14.148 [INF] Application started
-2025-12-10 16:53:16.137 [INF] Request finished HTTP/1.1 GET
-2025-12-10 16:54:26.656 [INF] Now listening on: http://localhost:5090
-```
-
-### ლოგის ფაილის ნახვა
-
-```bash
-cat Logs/log-20251210.txt
-```
+Log დონეები: Information, Warning, Error
 
 ---
 
-## ზოგადი ინფორმაცია
+## რესურსები
 
-GitHub Repository: https://github.com/GKutubidze/LoanApi
-
-მომხმარებელი: GKutubidze
-
-ლიცენზია: MIT
+- GitHub: https://github.com/GKutubidze/LoanApi
+- .NET Documentation: https://docs.microsoft.com/en-us/dotnet/
+- Entity Framework: https://docs.microsoft.com/en-us/ef/
