@@ -65,7 +65,7 @@ public class UserController : ControllerBase
         return Ok(response);
     }
 
-    // ACCOUNTANT: Block/Unblock user
+    
     [Authorize(Roles = "Accountant")]
     [HttpPatch("accountant/{id}/block")]
     public async Task<IActionResult> BlockUser(int id, [FromBody] BlockUserDto dto)

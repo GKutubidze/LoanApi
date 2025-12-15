@@ -64,9 +64,7 @@ public class UserService : IUserService
                 throw new Exception("არასწორი username ან პაროლი");
             }
 
-            // --- ცვლილება: აქედან ამოღებულია IsBlocked შემოწმება ---
-            // დაბლოკილ იუზერსაც შეუძლია შესვლა
-            // -----------------------------------------------------
+         
 
             bool valid = BCrypt.Net.BCrypt.Verify(password, user.PasswordHash);
 

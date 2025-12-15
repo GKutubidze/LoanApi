@@ -29,13 +29,11 @@ public class LoanService : ILoanService
                 throw new Exception("User not found");
             }
 
-            // --- ცვლილება: დაბლოკილი იუზერი სესხს ვერ იღებს ---
             if (user.IsBlocked)
             {
                 Log.Warning("CreateLoan failed: User is blocked - {UserId}", userId);
                 throw new Exception("User is blocked and cannot request loans");
             }
-            // --------------------------------------------------
 
             loan.UserId = userId;
             loan.Status = LoanStatus.Processing;
